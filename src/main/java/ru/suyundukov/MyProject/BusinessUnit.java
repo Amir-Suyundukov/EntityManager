@@ -11,6 +11,7 @@ public class BusinessUnit {
     private String shortName;
     private String fullName;
     private int psrn;
+
     private int inn;
     private String oktmo;
     private String centralBank;
