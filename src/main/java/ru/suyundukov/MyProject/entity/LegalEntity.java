@@ -1,10 +1,10 @@
-package ru.suyundukov.MyProject;
+package ru.suyundukov.MyProject.entity;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-public class LegalEntity extends BusinessUnit{
+public class LegalEntity extends BusinessUnit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

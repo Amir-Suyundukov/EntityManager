@@ -1,4 +1,4 @@
-package ru.suyundukov.MyProject;
+package ru.suyundukov.MyProject.entity;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
