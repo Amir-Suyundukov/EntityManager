@@ -1,5 +1,6 @@
 package ru.suyundukov.MyProject.entityTest;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.ArrayUtils;
@@ -13,6 +14,13 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import ru.suyundukov.MyProject.Repository.PersonRepository;
 import ru.suyundukov.MyProject.dto.PersonDto;
 import ru.suyundukov.MyProject.entity.Person;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -42,11 +50,25 @@ public class PersonControllerIntegrationTest {
         assertEquals("Amir", personDto.getName());
     }
 
+
+    // ===================================================================================================================
+    // = Implementation
+    // ===================================================================================================================
+
+
     private void createPerson() {
         Person person = new Person();
         person.setId(1L);
         person.setName("Amir");
         personRepository.save(person);
+    }
+
+    private <T> List<T> getListFromResponse(MvcResult result, Class<?>... classes) {
+        try {
+            return getFromResponse(result, List.class, classes);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private <T> T getFromResponse(MvcResult result, Class<?> clazz, Class<?>... classes) {
@@ -82,4 +104,37 @@ public class PersonControllerIntegrationTest {
             throw new RuntimeException(e);
         }
     }
+// ===================================================================================================================
+    // = File utils
+    // ===================================================================================================================
+
+    protected String readFile(String fileName) {
+        try {
+            URL resource = getClass().getResource(fileName);
+            assert resource != null;
+            return Files.readString(Paths.get(resource.toURI()));
+        } catch (IOException | URISyntaxException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    protected <T> T readFromFile(String fileName) {
+        String content = readFile(fileName);
+        try {
+            return objectMapper.readValue(content, new TypeReference<>() {
+            });
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected <T> T readFromFile(String fileName, Class<?> clazz, Class<?>... classes) {
+        String content = readFile(fileName);
+        return mapToObject(content, clazz, classes);
+    }
+
+    protected <T> List<T> readListFromFile(String fileName, Class<?>... classes) {
+        return readFromFile(fileName, List.class, classes);
+    }
+
 }
