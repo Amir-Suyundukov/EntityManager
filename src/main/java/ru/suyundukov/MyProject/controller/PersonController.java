@@ -1,6 +1,7 @@
 package ru.suyundukov.MyProject.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,7 @@ public class PersonController {
         return personMapper.mapToDto(savedPerson);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public PersonDto updatePerson(@PathVariable Long id, @RequestBody UpdatePersonDto updatePersonDto) {
         Person person = personMapper.mapToDomain(updatePersonDto);

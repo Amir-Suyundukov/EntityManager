@@ -1,26 +1,30 @@
 package ru.suyundukov.MyProject.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.*;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "person")
 @Getter
 @Setter
 @Entity
 public class Person extends CounterParty {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "surname")
     private String surName;
+    @Column(name = "patronymic")
     private String patronymic;
+    @Column(name = "centralbank")
     private String centralBank;//енумка
+    @Column(name = "snils")
     private int snils;
+    @Column(name = "dateofbirth")
     private LocalDate dateOfBirth;
 }

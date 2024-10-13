@@ -4,6 +4,7 @@ import ru.suyundukov.MyProject.entity.Person;
 
 import java.util.List;
 
+
 public interface PersonInbound {
     Person createPerson(Person person);
 

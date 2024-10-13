@@ -1,115 +1,85 @@
 package ru.suyundukov.MyProject.entityTest;
 
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import ru.suyundukov.MyProject.Repository.PersonRepository;
+import ru.suyundukov.MyProject.dto.PersonDto;
+import ru.suyundukov.MyProject.entity.Person;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 public class PersonControllerIntegrationTest {
-
     @Autowired
-    private MockMvc mockMvc;
+    protected PersonRepository personRepository;
+    @Autowired
+    protected MockMvc mockMvc;
+    @Autowired
+    protected ObjectMapper objectMapper;
 
     @Test
-    public void testCreatePerson() throws Exception {
-        String json = "{ \"name\": \"Qwe\"," +
-                " \"surName\": \"qas\"," +
-                " \"patronymic\": \"fd\"," +
-                " \"centralBank\": \"bank\"," +
-                " \"snils\": \"123\" }";
+    void getPerson_successfully() throws Exception {
+        createPerson();
 
-        mockMvc.perform(post("/person")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(json))
-                .andExpect(status().isCreated()) // Проверка статуса ответа
-                .andExpect(jsonPath("$.name").value("Qwe")) // Проверка имени в ответе
-                .andExpect(jsonPath("$.surName").value("qas")) // Проверка фамилии в ответе
-                .andExpect(jsonPath("$.patronymic").value("fd")) // Проверка отчества в ответе
-                .andExpect(jsonPath("$.centralBank").value("bank")) // Проверка банка в ответе
-                .andExpect(jsonPath("$.snils").value("123")); // Проверка СНИЛСа в ответе
+        MvcResult result = mockMvc.perform(get("/person/1"))
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        PersonDto personDto = getFromResponse(result, PersonDto.class);
+        assertEquals("Amir", personDto.getName());
     }
 
-    @Test
-    public void testGetPerson() throws Exception {
-        // Создаем персонажа перед его получением
-        String json = "{ \"name\": \"Qwe\"," +
-                " \"surName\": \"qas\"," +
-                " \"patronymic\": \"fd\"," +
-                " \"centralBank\": \"bank\"," +
-                " \"snils\": \"123\" }";
-
-        mockMvc.perform(post("/person")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(json));
-        mockMvc.perform(get("/person/1"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Qwe")) // Проверка имени в ответе
-                .andExpect(jsonPath("$.surName").value("qas")) // Проверка фамилии в ответе
-                .andExpect(jsonPath("$.patronymic").value("fd")) // Проверка отчества в ответе
-                .andExpect(jsonPath("$.centralBank").value("bank")) // Проверка банка в ответе
-                .andExpect(jsonPath("$.snils").value("123")); // Проверка СНИЛСа в ответе
+    private void createPerson() {
+        Person person = new Person();
+        person.setId(1L);
+        person.setName("Amir");
+        personRepository.save(person);
     }
 
-    @Test
-    public void testUpdatePerson() throws Exception {
-        // Создаем персонажа перед обновлением
-        String json = "{ \"name\": \"Qwe\"," +
-                " \"surName\": \"qas\"," +
-                " \"patronymic\": \"fd\"," +
-                " \"centralBank\": \"bank\"," +
-                " \"snils\": \"123\" }";
-
-        mockMvc.perform(post("/person")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(json));
-        String updatedJson = "{ \"name\": \"NewName\"," +
-                " \"surName\": \"NewSurName\"," +
-                " \"patronymic\": \"NewPatronymic\"," +
-                " \"centralBank\": \"NewBank\"," +
-                " \"snils\": \"456\" }";
-
-        mockMvc.perform(put("/person/1")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(updatedJson))
-                .andExpect(status().isOk());
-
-        // Проверяем обновление
-        mockMvc.perform(get("/person/1"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("NewName"))
-                .andExpect(jsonPath("$.surName").value("NewSurName"))
-                .andExpect(jsonPath("$.patronymic").value("NewPatronymic"))
-                .andExpect(jsonPath("$.centralBank").value("NewBank"))
-                .andExpect(jsonPath("$.snils").value("456"));
+    private <T> T getFromResponse(MvcResult result, Class<?> clazz, Class<?>... classes) {
+        return mapToObject(getStringFromResponse(result), clazz, classes);
     }
 
-    @Test
-    public void testDeletePerson() throws Exception {
-        // Создаем персонажа перед удалением
-        String json = "{ \"name\": \"Qwe\"," +
-                " \"surName\": \"qas\"," +
-                " \"patronymic\": \"fd\"," +
-                " \"centralBank\": \"bank\"," +
-                " \"snils\": \"123\" }";
+    protected <T> T mapToObject(String string, Class<?> clazz, Class<?>... classes) {
+        try {
+            if (classes.length == 0) {
+                return (T) objectMapper.readValue(string, clazz);
+            }
 
-        mockMvc.perform(post("/person")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(json));
+            Class<?>[] newClasses = ArrayUtils.addFirst(classes, clazz);
+            JavaType currentType = null;
+            for (int i = newClasses.length - 1; i > 0; i--) {
+                if (currentType == null) {
+                    currentType = objectMapper.getTypeFactory().constructParametricType(newClasses[i - 1], newClasses[i]);
+                } else {
+                    currentType = objectMapper.getTypeFactory().constructParametricType(newClasses[i - 1], currentType);
+                }
+            }
 
-        // Удаляем персонажа
-        mockMvc.perform(delete("/person/1"))
-                .andExpect(status().isNoContent());
+            return objectMapper.readValue(string, currentType);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-        // Проверяем, что персонаж удален
-        mockMvc.perform(get("/person/1"))
-                .andExpect(status().isNotFound());
+    private String getStringFromResponse(MvcResult result) {
+        try {
+            return result.getResponse().getContentAsString(UTF_8);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

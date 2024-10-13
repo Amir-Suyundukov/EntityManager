@@ -6,10 +6,9 @@ import ru.suyundukov.MyProject.dto.PersonDto;
 import ru.suyundukov.MyProject.dto.UpdatePersonDto;
 import ru.suyundukov.MyProject.entity.Person;
 
-@Mapper(componentModel = "string")
+@Mapper(componentModel = "spring")
 public interface PersonMapper {
     PersonDto mapToDto(Person person);
     Person mapToDomain(CreatePersonDto createPersonDto);
     Person mapToDomain(UpdatePersonDto updatePersonDto);
-
 }
