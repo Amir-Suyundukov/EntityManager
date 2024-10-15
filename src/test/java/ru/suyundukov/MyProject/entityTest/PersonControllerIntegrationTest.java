@@ -59,6 +59,7 @@ public class PersonControllerIntegrationTest {
     private void createPerson() {
         Person person = new Person();
         person.setId(1L);
+
         person.setName("Amir");
         personRepository.save(person);
     }
