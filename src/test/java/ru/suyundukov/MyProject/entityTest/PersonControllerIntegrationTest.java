@@ -25,6 +25,7 @@ import java.util.List;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @SpringBootTest
@@ -50,6 +51,24 @@ public class PersonControllerIntegrationTest {
         assertEquals("Amir", personDto.getName());
     }
 
+    @Test
+    void createPerson_successfully() throws Exception{
+        PersonDto personDto = new PersonDto();
+        personDto.setName("Amir");
+
+        MvcResult mvcResult = mockMvc.perform(post("/person")
+                .contentType("application/json")
+                .content(objectMapper.writeValueAsBytes(personDto)))
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andReturn();
+
+        PersonDto personDto1 = getFromResponse(mvcResult, PersonDto.class);
+        assertEquals("Amir", personDto1.getName());
+        Person person = personRepository.findById(personDto1.getId()).orElseThrow();
+        assertEquals("Amir", person.getName());
+    }
+
 
     // ===================================================================================================================
     // = Implementation
@@ -59,7 +78,6 @@ public class PersonControllerIntegrationTest {
     private void createPerson() {
         Person person = new Person();
         person.setId(1L);
-
         person.setName("Amir");
         personRepository.save(person);
     }
