@@ -65,8 +65,8 @@ public class PersonControllerIntegrationTest {
 
         PersonDto createPersonDto = getFromResponse(mvcResult, PersonDto.class);
         assertEquals("Amir", createPersonDto.getName());
-        Person savePerson = personRepository.findById(createPersonDto.getId()).orElseThrow();
-        assertEquals("Amir", savePerson.getName());
+        Person savePersonDto = personRepository.findById(createPersonDto.getId()).orElseThrow();
+        assertEquals("Amir", savePersonDto.getName());
     }
 
 
