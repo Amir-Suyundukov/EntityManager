@@ -63,10 +63,10 @@ public class PersonControllerIntegrationTest {
                 .andExpect(MockMvcResultMatchers.status().isCreated())
                 .andReturn();
 
-        PersonDto personDto1 = getFromResponse(mvcResult, PersonDto.class);
-        assertEquals("Amir", personDto1.getName());
-        Person person = personRepository.findById(personDto1.getId()).orElseThrow();
-        assertEquals("Amir", person.getName());
+        PersonDto createPersonDto = getFromResponse(mvcResult, PersonDto.class);
+        assertEquals("Amir", createPersonDto.getName());
+        Person savePerson = personRepository.findById(createPersonDto.getId()).orElseThrow();
+        assertEquals("Amir", savePerson.getName());
     }
 
 
