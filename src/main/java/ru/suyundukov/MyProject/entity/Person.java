@@ -17,6 +17,10 @@ import java.time.LocalDate;
 public class Person extends CounterParty {
     @Column(name = "name")
     private String name;
+    @Column(name = "type")
+    private String type;
+    @Column(unique = true)
+    private String uniqueId;
     @Column(name = "surname")
     private String surName;
     @Column(name = "patronymic")
