@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenerationTime;
+import org.hibernate.annotations.GeneratorType;
 
 import java.time.LocalDate;
 
@@ -17,9 +19,12 @@ import java.time.LocalDate;
 public class Person extends CounterParty {
     @Column(name = "name")
     private String name;
+    @Enumerated(EnumType.STRING)
     @Column(name = "type")
-    private String type;
-    @Column(unique = true)
+    private UniqueId type;
+    @Column(name = "unique_id", unique = true)
+    @GeneratorType(type = ru.suyundukov.MyProject.others.UniqueIdGenerator.class,
+            when = GenerationTime.INSERT)
     private String uniqueId;
     @Column(name = "surname")
     private String surName;
@@ -31,4 +36,12 @@ public class Person extends CounterParty {
     private int snils;
     @Column(name = "dateofbirth")
     private LocalDate dateOfBirth;
+    /*
+
+     * afId договора
+
+    @Column(name = "af_id")
+    @GeneratorType(type = FactoringAgreementAfIdGenerator.class, when = GenerationTime.INSERT)
+    private String afId;
+     */
 }
