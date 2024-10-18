@@ -17,6 +17,11 @@ import java.time.LocalDate;
 public class Person extends CounterParty {
     @Column(name = "name")
     private String name;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type")
+    private UniqueId type;
+    @Column(name = "unique_id", unique = true)
+    private String uniqueId;
     @Column(name = "surname")
     private String surName;
     @Column(name = "patronymic")
@@ -27,4 +32,12 @@ public class Person extends CounterParty {
     private int snils;
     @Column(name = "dateofbirth")
     private LocalDate dateOfBirth;
+    /*
+
+     * afId договора
+
+    @Column(name = "af_id")
+    @GeneratorType(type = FactoringAgreementAfIdGenerator.class, when = GenerationTime.INSERT)
+    private String afId;
+     */
 }
