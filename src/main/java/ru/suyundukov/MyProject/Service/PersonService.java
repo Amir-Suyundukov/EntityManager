@@ -16,17 +16,16 @@ public class PersonService implements PersonInbound {
     private final PersonRepository personRepository;
 
     public Person createPerson(Person person) {
-//        String unique = person.getType();
-//        if(unique == null || unique.isEmpty()){
-//            throw new IllegalArgumentException("Type is required");
-//        }
-//
-//        Integer maxId = personRepository.findMaxUniqueIdNumberByType(unique);
-//        int nextId = (maxId != null ? maxId : 0) + 1;
-//
-//        person.setUniqueId(unique + "-" + nextId);
-//
-//        return personRepository.save(person);
+        if (person.getType() == null){
+            throw new IllegalArgumentException("Укажите уникальный ID");
+        }
+        String prefix = person.getType().getUnique();
+        Integer maxId = personRepository.findMaxUniqueIdNumberByType(prefix);
+        int nextId = (maxId != null ? maxId : 0) + 1;
+        String uniqueId = prefix + "-" + nextId;
+
+        person.setUniqueId(uniqueId);
+
         return personRepository.save(person);
 
     }
