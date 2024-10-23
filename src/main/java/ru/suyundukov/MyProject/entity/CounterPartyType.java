@@ -5,14 +5,14 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Getter
-public enum UniqueId {
+public enum CounterPartyType {
     IP("IP"),
     UL("UL"),
     FL("FL");
 
-    private String unique;
+    private String value;
 
-    UniqueId(String unique) {
-        this.unique = unique;
+    CounterPartyType(String unique) {
+        this.value = unique;
     }
 }

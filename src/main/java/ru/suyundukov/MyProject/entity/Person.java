@@ -19,7 +19,7 @@ public class Person extends CounterParty {
     private String name;
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
-    private UniqueId type;
+    private CounterPartyType type;
     @Column(name = "unique_id", unique = true)
     private String uniqueId;
     @Column(name = "surname")

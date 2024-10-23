@@ -19,7 +19,7 @@ public class PersonService implements PersonInbound {
         if (person.getType() == null){
             throw new IllegalArgumentException("Укажите уникальный ID");
         }
-        String prefix = person.getType().getUnique();
+        String prefix = person.getType().getValue();
         Integer maxId = personRepository.findMaxUniqueIdNumberByType(prefix);
         int nextId = (maxId != null ? maxId : 0) + 1;
         String uniqueId = prefix + "-" + nextId;
