@@ -17,7 +17,7 @@ public class PersonService implements PersonInbound {
 
     public Person createPerson(Person person) {
         if (person.getType() == null){
-            throw new IllegalArgumentException("Укажите уникальный ID");
+            throw new IllegalArgumentException("Укажите тип");
         }
         String prefix = person.getType().getValue();
         Integer maxId = personRepository.findMaxUniqueIdNumberByType(prefix);

@@ -12,7 +12,7 @@ import ru.suyundukov.MyProject.entity.CounterPartyType;
 @Setter
 public class PersonDto {
     private Long id;
-//    private String uniqueId;
+    private String uniqueId;
     private CounterPartyType type;
     private String name;
     private String surName;

@@ -56,7 +56,7 @@ public class PersonController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    private ResponseEntity<Void> deletePerson(@PathVariable Long id) {
+    public ResponseEntity<Void> deletePerson(@PathVariable Long id) {
         personInbound.deletePerson(id);
         return ResponseEntity.ok().build();
     }

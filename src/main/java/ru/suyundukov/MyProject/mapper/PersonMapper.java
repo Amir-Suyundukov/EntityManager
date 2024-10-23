@@ -1,6 +1,7 @@
 package ru.suyundukov.MyProject.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import ru.suyundukov.MyProject.dto.CreatePersonDto;
 import ru.suyundukov.MyProject.dto.PersonDto;
 import ru.suyundukov.MyProject.dto.UpdatePersonDto;
@@ -9,6 +10,7 @@ import ru.suyundukov.MyProject.entity.Person;
 @Mapper(componentModel = "spring")
 public interface PersonMapper {
     PersonDto mapToDto(Person person);
+//    @Mapping(target = "type", expression = "java(CounterPartyType.valueOf(createPersonDto.getType()))")
     Person mapToDomain(CreatePersonDto createPersonDto);
     Person mapToDomain(UpdatePersonDto updatePersonDto);
 }

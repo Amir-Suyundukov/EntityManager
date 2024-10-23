@@ -32,12 +32,4 @@ public class Person extends CounterParty {
     private int snils;
     @Column(name = "dateofbirth")
     private LocalDate dateOfBirth;
-    /*
-
-     * afId договора
-
-    @Column(name = "af_id")
-    @GeneratorType(type = FactoringAgreementAfIdGenerator.class, when = GenerationTime.INSERT)
-    private String afId;
-     */
 }
