@@ -13,7 +13,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import ru.suyundukov.MyProject.Repository.PersonRepository;
 import ru.suyundukov.MyProject.dto.PersonDto;
-import ru.suyundukov.MyProject.entity.CounterPartyType;
 import ru.suyundukov.MyProject.entity.Person;
 
 import java.io.IOException;
@@ -29,7 +28,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static ru.suyundukov.MyProject.entity.CounterPartyType.IP;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -55,15 +53,13 @@ public class PersonControllerIntegrationTest {
     }
 
     @Test
-    void createPerson_successfully() throws Exception{
+    void createPerson_successfully() throws Exception {
         PersonDto personDto = new PersonDto();
         personDto.setName("Amir");
-        personDto.setType(IP);
-
 
         MvcResult mvcResult = mockMvc.perform(post("/person")
-                .contentType("application/json")
-                .content(objectMapper.writeValueAsBytes(personDto)))
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsBytes(personDto)))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isCreated())
                 .andReturn();
@@ -84,7 +80,6 @@ public class PersonControllerIntegrationTest {
     private void createPerson() {
         Person person = new Person();
         person.setName("Amir");
-        person.setType(IP);
         personRepository.save(person);
     }
 

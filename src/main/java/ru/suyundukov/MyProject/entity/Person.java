@@ -1,6 +1,8 @@
 package ru.suyundukov.MyProject.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,10 +19,9 @@ import java.time.LocalDate;
 public class Person extends CounterParty {
     @Column(name = "name")
     private String name;
-    @Enumerated(EnumType.STRING)
     @Column(name = "type")
-    private CounterPartyType type;
-    @Column(name = "unique_id", unique = true)
+    private String type = "IP";
+    @Column(name = "unique_id")
     private String uniqueId;
     @Column(name = "surname")
     private String surName;

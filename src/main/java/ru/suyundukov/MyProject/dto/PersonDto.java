@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.suyundukov.MyProject.entity.CounterPartyType;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,7 +12,7 @@ import ru.suyundukov.MyProject.entity.CounterPartyType;
 public class PersonDto {
     private Long id;
     private String uniqueId;
-    private CounterPartyType type;
+    private String type;
     private String name;
     private String surName;
     private String patronymic;
