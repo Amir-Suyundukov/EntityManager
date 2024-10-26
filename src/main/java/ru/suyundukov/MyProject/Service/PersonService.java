@@ -24,7 +24,6 @@ public class PersonService implements PersonInbound {
         person.setType("IP");
 
         return personRepository.save(person);
-
     }
 
     public Person updatePerson(Long id, Person person) {

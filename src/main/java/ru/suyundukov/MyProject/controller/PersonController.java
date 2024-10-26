@@ -59,6 +59,4 @@ public class PersonController {
         personInbound.deletePerson(id);
         return ResponseEntity.ok().build();
     }
-
-
 }

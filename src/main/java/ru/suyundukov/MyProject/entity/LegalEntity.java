@@ -1,12 +1,21 @@
 package ru.suyundukov.MyProject.entity;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-public class LegalEntity extends BusinessUnit {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@Table(name = "legalentity")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+public class LegalEntity extends BusinessUnit {//ЮЛ
+    @Column(name = "kpp")
     private int kpp;
+    @Column(name = "type")
+    private String type = "UL";
+    @Column(name = "unique_id")
+    private String uniqueId;
 }
