@@ -9,6 +9,8 @@ import ru.suyundukov.MyProject.entity.LegalEntity;
 @Mapper(componentModel = "spring")
 public interface LegalEntityMapper {
     LegalEntityDto mapToDto(LegalEntity legalEntity);
+
     LegalEntity mapToDomain(CreateLegalEntityDto createLegalEntityDto);
+
     LegalEntity mapToDomain(UpdateLegalEntityDto updateLegalEntity);
 }

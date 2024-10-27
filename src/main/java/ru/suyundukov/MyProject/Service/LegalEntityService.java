@@ -31,6 +31,7 @@ public class LegalEntityService implements LegalEntityInbound {
                 .orElseThrow(() -> new EntityNotFoundException("LegalEntity not found by ID - " + id));
         legalEntity.setFullName(legalEntity.getFullName());
         legalEntity.setShortName(legalEntity.getShortName());
+        legalEntity.setKpp(legalEntity.getKpp());
         legalEntity.setPsrn(legalEntity.getPsrn());
         legalEntity.setInn(legalEntity.getInn());
         legalEntity.setOktmo(legalEntity.getOktmo());

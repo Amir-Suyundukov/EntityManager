@@ -14,7 +14,7 @@ import ru.suyundukov.MyProject.mapper.LegalEntityMapper;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/legalentity")
 @RequiredArgsConstructor
 public class LegalEntityController {
 

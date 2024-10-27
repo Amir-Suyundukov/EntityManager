@@ -9,10 +9,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class CreateLegalEntityDto {
+public class CreateIndividualTraderDto {
     private String shortName;
     private String fullName;
-    private int kpp;
     private int psrn;
     private int inn;
     private String oktmo;

@@ -10,7 +10,6 @@ import ru.suyundukov.MyProject.entity.Person;
 public interface PersonMapper {
     PersonDto mapToDto(Person person);
 
-    //    @Mapping(target = "type", expression = "java(CounterPartyType.valueOf(createPersonDto.getType()))")
     Person mapToDomain(CreatePersonDto createPersonDto);
 
     Person mapToDomain(UpdatePersonDto updatePersonDto);

@@ -15,6 +15,7 @@ public class LegalEntityDto {
     private String uniqueId;
     private String shortName;
     private String fullName;
+    private String kpp;
     private int psrn;
     private int inn;
     private String oktmo;
