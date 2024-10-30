@@ -20,7 +20,7 @@ public class Person extends CounterParty {
     @Column(name = "name")
     private String name;
     @Column(name = "type")
-    private String type = "IP";
+    private String type = "IP";//физ лицо
     @Column(name = "unique_id")
     private String uniqueId;
     @Column(name = "surname")

@@ -1,5 +1,7 @@
 package ru.suyundukov.MyProject.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/trader")
 @RequiredArgsConstructor
+@Tag(name = "Контроллер индивидуального предпринимателя(IT)")
 public class IndividualTraderController {
 
     private final IndividualTraderInbound individualTraderInbound;
@@ -23,6 +26,7 @@ public class IndividualTraderController {
     private final IndividualTraderMapper individualTraderMapper;
 
     @PostMapping
+    @Operation(description = "Создание ИП")
     @ResponseStatus(HttpStatus.CREATED)
     public IndividualTraderDto createdIndividualTrader(@RequestBody CreateIndividualTraderDto createIndividualTraderDto) {
         IndividualTrader create = individualTraderMapper.mapToDomain(createIndividualTraderDto);
@@ -31,6 +35,7 @@ public class IndividualTraderController {
     }
 
     @PutMapping
+    @Operation(description = "Обновление ИП")
     @ResponseStatus(HttpStatus.OK)
     public IndividualTraderDto updateIndividualTrader(@PathVariable Long id, @RequestBody UpdateIndividualTraderDto updateIndividualTraderDto) {
         IndividualTrader create = individualTraderMapper.mapToDomain(updateIndividualTraderDto);
@@ -39,6 +44,7 @@ public class IndividualTraderController {
     }
 
     @GetMapping("/{id}")
+    @Operation(description = "Поиск Ип по id")
     @ResponseStatus(HttpStatus.OK)
     public IndividualTraderDto getIndividualTraderById(@PathVariable Long id) {
         IndividualTrader individualTrader = individualTraderInbound.getIndividualTraderByID(id);
@@ -46,6 +52,7 @@ public class IndividualTraderController {
     }
 
     @GetMapping
+    @Operation(description = "Список ИП")
     @ResponseStatus(HttpStatus.OK)
     public List<IndividualTraderDto> getAllIndividualTrader() {
         List<IndividualTrader> individualTraders = individualTraderInbound.foundAll();
@@ -53,6 +60,7 @@ public class IndividualTraderController {
     }
 
     @DeleteMapping
+    @Operation(description = "Удаление ИП по id")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Void> deleteIndividualTrader(@PathVariable Long id) {
         individualTraderInbound.deleteIndividualTrader(id);

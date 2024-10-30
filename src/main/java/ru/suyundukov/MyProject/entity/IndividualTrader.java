@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 public class IndividualTrader extends BusinessUnit {
     @Column(name = "type")
-    private String type = "IT";
+    private String type = "IT";//индивидуал
     @Column(name = "unique_id")
     private String uniqueId;
 }
