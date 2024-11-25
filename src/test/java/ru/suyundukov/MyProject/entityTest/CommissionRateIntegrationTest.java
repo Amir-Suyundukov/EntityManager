@@ -11,78 +11,71 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import ru.suyundukov.MyProject.Repository.PersonRepository;
-import ru.suyundukov.MyProject.dto.PersonDto;
-import ru.suyundukov.MyProject.entity.Person;
+import ru.suyundukov.MyProject.Repository.CommissionRateRepository;
+import ru.suyundukov.MyProject.dto.CommissionRateDto;
+import ru.suyundukov.MyProject.dto.IndividualTraderDto;
+import ru.suyundukov.MyProject.entity.*;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.Currency;
 import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class PersonControllerIntegrationTest {
+public class CommissionRateIntegrationTest {
+
     @Autowired
-    protected PersonRepository personRepository;
-    @Autowired
-    protected MockMvc mockMvc;
+    protected CommissionRateRepository commissionRateRepository;
     @Autowired
     protected ObjectMapper objectMapper;
+    @Autowired
+    protected MockMvc mockMvc;
 
     @Test
-    void getPerson_successfully() throws Exception {
-        createPerson();
+    void getCommissionRate_successfully() throws Exception {
+        createCommissionRate();
 
-        MvcResult result = mockMvc.perform(get("/person/1"))
+        MvcResult result = mockMvc.perform(get("/tes/AF"))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
 
-        PersonDto personDto = getFromResponse(result, PersonDto.class);
-        assertEquals("Amir", personDto.getName());
+        CommissionRateDto commissionRateDto = getFromResponse(result, CommissionRateDto.class);
+        assertEquals("AF", commissionRateDto.getAfId());
     }
-
-    @Test
-    void createPerson_successfully() throws Exception {
-        PersonDto personDto = new PersonDto();
-        personDto.setName("Amir");
-
-        MvcResult mvcResult = mockMvc.perform(post("/person")
-                        .contentType("application/json")
-                        .content(objectMapper.writeValueAsBytes(personDto)))
-                .andDo(print())
-                .andExpect(MockMvcResultMatchers.status().isCreated())
-                .andReturn();
-
-        PersonDto createdPersonDto = getFromResponse(mvcResult, PersonDto.class);
-        assertNotNull(createdPersonDto.getId(), "ID созданного объекта не должен быть null");
-        assertEquals("Amir", createdPersonDto.getName());
-        Person savedPerson = personRepository.findById(createdPersonDto.getId()).orElseThrow();
-        assertEquals("Amir", savedPerson.getName());
-    }
-
-    //написать тест на обновление для всех put запросов
-
 
     // ===================================================================================================================
     // = Implementation
     // ===================================================================================================================
 
 
-    private void createPerson() {
-        Person person = new Person();
-        person.setName("Amir");
-        personRepository.save(person);
+    private void createCommissionRate() {
+        CommissionRate commissionRate = new CommissionRate();
+        commissionRate.setAfId("AF");
+        commissionRate.setCurrency(Currency.getInstance("USD"));
+        commissionRate.setFinancingStatus(FinancingStatus.UNFUNDED);
+        commissionRate.setCommissionType(CommissionType.AD_REWARD);
+        commissionRate.setIsSurcharge(false);
+        commissionRate.setRateType(RateType.FIXED_AMOUNT);
+        commissionRate.setStartDate(LocalDate.now());
+        commissionRate.setStatus(CommissionRateStatus.OPEN);
+
+        CreationInfo creationInfo = new CreationInfo();
+        creationInfo.setCreateUserFullName("Default User");
+        creationInfo.setCreateUserLogin("USER");
+        commissionRate.setCreationInfo(creationInfo);
+
+        commissionRateRepository.save(commissionRate);
     }
 
     private <T> List<T> getListFromResponse(MvcResult result, Class<?>... classes) {
@@ -93,7 +86,6 @@ public class PersonControllerIntegrationTest {
         }
     }
 
-    // одинаковые методы вынести в абстрактный класс
     private <T> T getFromResponse(MvcResult result, Class<?> clazz, Class<?>... classes) {
         return mapToObject(getStringFromResponse(result), clazz, classes);
     }
@@ -159,5 +151,4 @@ public class PersonControllerIntegrationTest {
     protected <T> List<T> readListFromFile(String fileName, Class<?>... classes) {
         return readFromFile(fileName, List.class, classes);
     }
-
 }

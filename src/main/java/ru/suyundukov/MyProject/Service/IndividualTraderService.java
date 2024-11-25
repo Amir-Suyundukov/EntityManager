@@ -13,7 +13,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Service
 @RequiredArgsConstructor
 public class IndividualTraderService implements IndividualTraderInbound {
-
+    // изменить на запрос в бд , подсмотреть в agreements AbstractAfIdGenerator, FactoringAgreementAfIdGenerator, FactoringAgreement,
+    // @GeneratorType(type = FactoringAgreementAfIdGenerator.class, when = GenerationTime.INSERT)
     private final AtomicInteger integer = new AtomicInteger(0);
 
     private final IndividualTraderRepository individualTraderRepository;
@@ -30,12 +31,13 @@ public class IndividualTraderService implements IndividualTraderInbound {
         IndividualTrader foundById = individualTraderRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("IndividualTrader not found by ID - " + id));
 
-        individualTrader.setFullName(individualTrader.getFullName());
-        individualTrader.setShortName(individualTrader.getShortName());
-        individualTrader.setPsrn(individualTrader.getPsrn());
-        individualTrader.setInn(individualTrader.getInn());
-        individualTrader.setOktmo(individualTrader.getOktmo());
-        individualTrader.setCentralBank(individualTrader.getCentralBank());
+        //сделать правильно
+        foundById.setFullName(individualTrader.getFullName());
+        foundById.setShortName(individualTrader.getShortName());
+        foundById.setPsrn(individualTrader.getPsrn());
+        foundById.setInn(individualTrader.getInn());
+        foundById.setOktmo(individualTrader.getOktmo());
+        foundById.setCentralBank(individualTrader.getCentralBank());
 
         return individualTraderRepository.save(individualTrader);
     }

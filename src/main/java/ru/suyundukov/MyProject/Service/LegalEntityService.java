@@ -29,13 +29,13 @@ public class LegalEntityService implements LegalEntityInbound {
     public LegalEntity updateLegalEntity(Long id, LegalEntity legalEntity) {
         LegalEntity foundLegalEntity = legalEntityRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("LegalEntity not found by ID - " + id));
-        legalEntity.setFullName(legalEntity.getFullName());
-        legalEntity.setShortName(legalEntity.getShortName());
-        legalEntity.setKpp(legalEntity.getKpp());
-        legalEntity.setPsrn(legalEntity.getPsrn());
-        legalEntity.setInn(legalEntity.getInn());
-        legalEntity.setOktmo(legalEntity.getOktmo());
-        legalEntity.setCentralBank(legalEntity.getCentralBank());
+        foundLegalEntity.setFullName(legalEntity.getFullName());
+        foundLegalEntity.setShortName(legalEntity.getShortName());
+        foundLegalEntity.setKpp(legalEntity.getKpp());
+        foundLegalEntity.setPsrn(legalEntity.getPsrn());
+        foundLegalEntity.setInn(legalEntity.getInn());
+        foundLegalEntity.setOktmo(legalEntity.getOktmo());
+        foundLegalEntity.setCentralBank(legalEntity.getCentralBank());
 
         return legalEntityRepository.save(legalEntity);
     }
