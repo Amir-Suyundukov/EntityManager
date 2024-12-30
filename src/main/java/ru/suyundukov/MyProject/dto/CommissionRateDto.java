@@ -42,5 +42,7 @@ public class CommissionRateDto {
     private String createUserFullName;
     private String createUserLogin;
     private LocalDate startDate;
+    private LocalDate endDate;
+    private List<AgreementDto> agreements;
     private List<PartyDto> debtorsCreditors;
 }

@@ -1,6 +1,9 @@
 package ru.suyundukov.MyProject.Repository;
 
 import ru.suyundukov.MyProject.entity.CommissionRate;
+import ru.suyundukov.MyProject.entity.CommissionRateFilter;
+
+import java.util.List;
 
 public interface CommissionRateRepository {
     /**
@@ -16,4 +19,6 @@ public interface CommissionRateRepository {
      * @return ставка комисии
      */
     CommissionRate save(CommissionRate commissionRate);
+
+    List<CommissionRate> findByFilter(CommissionRateFilter filter);
 }

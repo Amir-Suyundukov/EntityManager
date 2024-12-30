@@ -38,5 +38,6 @@ public class CommissionRateCreateDto {
     private String createUserFullName;
     private String createUserLogin;
     private LocalDate startDate;
+    private LocalDate endDate;//старт и энд создать (и сделать что старт раньше чем енд и все в юз кейс)
     private List<PartyDto> debtorsCreditors;
 }

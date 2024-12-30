@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.jpa.repository.EntityGraph;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -16,7 +15,7 @@ import java.util.List;
 @NamedEntityGraph(
         name = "infinite code",
         attributeNodes = {
-                @NamedAttributeNode(value = "agreement"),
+//                @NamedAttributeNode(value = "agreements"),
                 @NamedAttributeNode(value = "contract"),
                 @NamedAttributeNode(value = "party"),
                 @NamedAttributeNode(value = "requirement"),
@@ -67,7 +66,7 @@ public class CommissionRate extends BusinessEntity {//главный класс
     /**
      * Дата окончания действия ставки
      */
-    @Column(name = "end_date")
+    @Column(name = "end_date", nullable = false)
     private LocalDate endDate;
     /**
      * Срок фондирования От (дней)
@@ -125,9 +124,11 @@ public class CommissionRate extends BusinessEntity {//главный класс
     /**
      * Данные договора
      */
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "agreement_id")
-    private Agreement agreement;
+    //сделать как у пати
+    //get запрос на список
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "commission_rate_id")
+    private List<Agreement> agreements;
     /**
      * Данные контрагента
      */
@@ -167,6 +168,18 @@ public class CommissionRate extends BusinessEntity {//главный класс
         } else {
             this.debtorsCreditors.clear();
             this.debtorsCreditors.addAll(debtorsCreditors);
+        }
+        return this;
+    }
+
+    public CommissionRate setAgreements(List<Agreement> agreements) {
+        if (this.agreements == null) {
+            this.agreements = agreements;
+        } else if (agreements == null) {
+            this.agreements.clear();
+        } else {
+            this.agreements.clear();
+            this.agreements.addAll(agreements);
         }
         return this;
     }

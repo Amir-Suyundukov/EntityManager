@@ -27,7 +27,9 @@ import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @SpringBootTest
@@ -53,6 +55,37 @@ public class CommissionRateIntegrationTest {
         CommissionRateDto commissionRateDto = getFromResponse(result, CommissionRateDto.class);
         assertEquals("AF", commissionRateDto.getAfId());
     }
+    @Test
+    void getCommissionRateBiId_successfully() throws Exception {
+        createCommissionRate();
+        MvcResult result = mockMvc.perform(get("/tes/AF"))
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        CommissionRateDto commissionRateDto = getFromResponse(result, CommissionRateDto.class);
+        assertEquals("AF", commissionRateDto.getAfId());
+        assertEquals("USD", commissionRateDto.getCurrency().getCurrencyCode());
+    }
+
+    @Test
+    void findCommissionRateByFilter_successfully() throws Exception {
+        createCommissionRate();
+        CommissionRateFilter filter = new CommissionRateFilter();
+        filter.setStatus(CommissionRateStatus.OPEN);
+
+        MvcResult result = mockMvc.perform(post("/tes/filter")
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(filter)))
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        List<CommissionRateDto> commissionRateDtos = getListFromResponse(result, CommissionRateDto.class);
+        assertFalse(commissionRateDtos.isEmpty());
+        assertEquals("AF1", commissionRateDtos.get(0).getAfId());
+
+    }
 
     // ===================================================================================================================
     // = Implementation
@@ -61,7 +94,7 @@ public class CommissionRateIntegrationTest {
 
     private void createCommissionRate() {
         CommissionRate commissionRate = new CommissionRate();
-        commissionRate.setAfId("AF");
+        commissionRate.setAfId("AF1");
         commissionRate.setCurrency(Currency.getInstance("USD"));
         commissionRate.setFinancingStatus(FinancingStatus.UNFUNDED);
         commissionRate.setCommissionType(CommissionType.AD_REWARD);
@@ -69,6 +102,10 @@ public class CommissionRateIntegrationTest {
         commissionRate.setRateType(RateType.FIXED_AMOUNT);
         commissionRate.setStartDate(LocalDate.now());
         commissionRate.setStatus(CommissionRateStatus.OPEN);
+        LocalDate startDate = LocalDate.now();
+        commissionRate.setStartDate(startDate);
+        LocalDate endDate = startDate.plusDays(30);
+        commissionRate.setEndDate(endDate);
 
         CreationInfo creationInfo = new CreationInfo();
         creationInfo.setCreateUserFullName("Default User");
