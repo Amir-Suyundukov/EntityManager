@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.ArrayUtils;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -11,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import ru.suyundukov.MyProject.Repository.CommissionRateJpaRepository;
 import ru.suyundukov.MyProject.Repository.CommissionRateRepository;
 import ru.suyundukov.MyProject.dto.CommissionRateDto;
 import ru.suyundukov.MyProject.dto.IndividualTraderDto;
@@ -26,8 +28,7 @@ import java.util.Currency;
 import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -39,40 +40,50 @@ public class CommissionRateIntegrationTest {
     @Autowired
     protected CommissionRateRepository commissionRateRepository;
     @Autowired
+    protected CommissionRateJpaRepository commissionRateJpaRepository;
+    @Autowired
     protected ObjectMapper objectMapper;
     @Autowired
     protected MockMvc mockMvc;
 
+    @BeforeEach
+    void setUp() {
+        commissionRateJpaRepository.deleteAll();
+    }
+
     @Test
     void getCommissionRate_successfully() throws Exception {
-        createCommissionRate();
+        createCommissionRate("LM1");
 
-        MvcResult result = mockMvc.perform(get("/tes/AF"))
+        MvcResult result = mockMvc.perform(get("/tes/AF1"))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
 
         CommissionRateDto commissionRateDto = getFromResponse(result, CommissionRateDto.class);
-        assertEquals("AF", commissionRateDto.getAfId());
+        assertEquals("AF1", commissionRateDto.getAfId());
     }
+
     @Test
     void getCommissionRateBiId_successfully() throws Exception {
-        createCommissionRate();
+        createCommissionRate("LM1");
+
         MvcResult result = mockMvc.perform(get("/tes/AF"))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
 
         CommissionRateDto commissionRateDto = getFromResponse(result, CommissionRateDto.class);
-        assertEquals("AF", commissionRateDto.getAfId());
+        assertEquals("AF1", commissionRateDto.getAfId());
         assertEquals("USD", commissionRateDto.getCurrency().getCurrencyCode());
     }
 
     @Test
     void findCommissionRateByFilter_successfully() throws Exception {
-        createCommissionRate();
+        createCommissionRate("LM1");
+        createCommissionRate("LM2");
         CommissionRateFilter filter = new CommissionRateFilter();
-        filter.setStatus(CommissionRateStatus.OPEN);
+        filter.setLmId("LM1");
 
         MvcResult result = mockMvc.perform(post("/tes/filter")
                         .contentType("application/json")
@@ -83,8 +94,27 @@ public class CommissionRateIntegrationTest {
 
         List<CommissionRateDto> commissionRateDtos = getListFromResponse(result, CommissionRateDto.class);
         assertFalse(commissionRateDtos.isEmpty());
-        assertEquals("AF1", commissionRateDtos.get(0).getAfId());
+        assertEquals(1, commissionRateDtos.size());
+        assertEquals("LM1", commissionRateDtos.get(0).getLmId());
+    }
 
+    @Test
+    void findCommissionRateByFilter_notFound() throws Exception {
+        createCommissionRate("LM1");
+        createCommissionRate("LM2");
+        CommissionRateFilter filter = new CommissionRateFilter();
+        filter.setLmId("LM333");
+
+        MvcResult result = mockMvc.perform(post("/tes/filter")
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(filter)))
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        List<CommissionRateDto> commissionRateDtos = getListFromResponse(result, CommissionRateDto.class);
+        assertTrue(commissionRateDtos.isEmpty());
+        assertEquals(0, commissionRateDtos.size());
     }
 
     // ===================================================================================================================
@@ -92,9 +122,10 @@ public class CommissionRateIntegrationTest {
     // ===================================================================================================================
 
 
-    private void createCommissionRate() {
+    private void createCommissionRate(String lmId) {
         CommissionRate commissionRate = new CommissionRate();
         commissionRate.setAfId("AF1");
+        commissionRate.setLmId(lmId);
         commissionRate.setCurrency(Currency.getInstance("USD"));
         commissionRate.setFinancingStatus(FinancingStatus.UNFUNDED);
         commissionRate.setCommissionType(CommissionType.AD_REWARD);

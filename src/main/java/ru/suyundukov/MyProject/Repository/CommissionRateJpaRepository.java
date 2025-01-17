@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface CommissionRateJpaRepository extends JpaRepository<CommissionRate, Long> {
     @EntityGraph(value = "infinite code")
     Optional<CommissionRate> findByAfId(String afId);
+    Optional<CommissionRate> findByLmId(String lmId);
 }

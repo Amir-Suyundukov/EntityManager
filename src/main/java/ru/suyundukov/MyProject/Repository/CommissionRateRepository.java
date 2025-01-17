@@ -12,6 +12,7 @@ public interface CommissionRateRepository {
      * @return ставка комисии
      */
     CommissionRate getByAfId(String afId);
+    CommissionRate getByLmId(String lmId);
 
     /**
      * Сохранение ставки комисии

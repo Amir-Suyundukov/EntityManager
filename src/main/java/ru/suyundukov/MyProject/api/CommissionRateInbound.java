@@ -13,6 +13,8 @@ public interface CommissionRateInbound {
      */
     CommissionRate getByAfId(String afId);
 
+    CommissionRate getByLmId(String lmId);
+
     /**
      * Создание ставки комисии
      * @param commissionRate

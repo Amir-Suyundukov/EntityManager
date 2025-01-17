@@ -36,6 +36,13 @@ public class CommissionRateController extends AbstractExternalController {
         return commissionRateMapper.mapToDto(commissionRate);
     }
 
+    @GetMapping("/byLmId")
+    @Operation(description = "Получение данных Ставки комисии по lmId")
+    public CommissionRateDto getCommissionRateByLmId(@RequestHeader("lmId") String lmId) {
+        CommissionRate commissionRate = commissionRateInbound.getByLmId(lmId);
+        return commissionRateMapper.mapToDto(commissionRate);
+    }
+
 
     @PostMapping
     @Operation(description = "Создание Ставки Комисии")

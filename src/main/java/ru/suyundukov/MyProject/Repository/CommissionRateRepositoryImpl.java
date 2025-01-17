@@ -34,6 +34,14 @@ public class CommissionRateRepositoryImpl implements CommissionRateRepository {
 
         return commissionRate;
     }
+    @Override
+    public CommissionRate getByLmId(String lmId) {
+        CommissionRate commissionRate = commissionRateJpaRepository.findByLmId(lmId)
+                .orElseThrow(() -> new EntityNotFoundException("CommissionRate with lmId " + lmId + " not found"));
+        Hibernate.initialize(commissionRate.getAgreements());
+
+        return commissionRate;
+    }
 
 
     @Override

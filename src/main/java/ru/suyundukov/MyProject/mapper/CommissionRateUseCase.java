@@ -27,6 +27,14 @@ public class CommissionRateUseCase implements CommissionRateInbound {
         return commissionRateRepository.getByAfId(afId);
     }
 
+
+    @Override
+    @Transactional
+    public CommissionRate getByLmId(String lmId) {
+        log.info("Getting commission rate by AfId: {}", lmId);
+        return commissionRateRepository.getByLmId(lmId);
+    }
+
     @Override
     @Transactional
     public CommissionRate createCommissionRate(CommissionRate commissionRate) {
