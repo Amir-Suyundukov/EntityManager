@@ -13,7 +13,7 @@ import java.util.Currency;
 import java.util.List;
 
 @NamedEntityGraph(
-        name = "infinite code",
+        name = "filter Commission Rate by id",
         attributeNodes = {
 //                @NamedAttributeNode(value = "agreements"),
                 @NamedAttributeNode(value = "contract"),

@@ -15,7 +15,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import ru.suyundukov.MyProject.Repository.CommissionRateJpaRepository;
 import ru.suyundukov.MyProject.Repository.CommissionRateRepository;
 import ru.suyundukov.MyProject.dto.CommissionRateDto;
-import ru.suyundukov.MyProject.dto.IndividualTraderDto;
 import ru.suyundukov.MyProject.entity.*;
 
 import java.io.IOException;
@@ -53,7 +52,7 @@ public class CommissionRateIntegrationTest {
 
     @Test
     void getCommissionRate_successfully() throws Exception {
-        createCommissionRate("LM1");
+        createCommissionRate("LM1", LocalDate.now(), LocalDate.now().plusDays(30));
 
         MvcResult result = mockMvc.perform(get("/tes/AF1"))
                 .andDo(print())
@@ -65,10 +64,10 @@ public class CommissionRateIntegrationTest {
     }
 
     @Test
-    void getCommissionRateBiId_successfully() throws Exception {
-        createCommissionRate("LM1");
+    void getCommissionRateByAfId_successfully() throws Exception {
+        createCommissionRate("LM1", LocalDate.now(), LocalDate.now().plusDays(30));
 
-        MvcResult result = mockMvc.perform(get("/tes/AF"))
+        MvcResult result = mockMvc.perform(get("/tes/AF1"))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
@@ -79,9 +78,23 @@ public class CommissionRateIntegrationTest {
     }
 
     @Test
+    void getCommissionRateByLmId_successfully() throws Exception {
+    createCommissionRate("LM1", LocalDate.now(), LocalDate.now().plusDays(30));
+
+    MvcResult result = mockMvc.perform(get("/tes/byLmId")
+            .header("lmId", "LM1"))
+            .andDo(print())
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andReturn();
+
+    CommissionRateDto commissionRateDto = getFromResponse(result, CommissionRateDto.class);
+    assertEquals("LM1", commissionRateDto.getLmId());
+    }
+
+    @Test
     void findCommissionRateByFilter_successfully() throws Exception {
-        createCommissionRate("LM1");
-        createCommissionRate("LM2");
+        createCommissionRate("LM1", LocalDate.now(), LocalDate.now().plusDays(30));
+        createCommissionRate("LM2", LocalDate.now(), LocalDate.now().plusDays(30));
         CommissionRateFilter filter = new CommissionRateFilter();
         filter.setLmId("LM1");
 
@@ -100,8 +113,8 @@ public class CommissionRateIntegrationTest {
 
     @Test
     void findCommissionRateByFilter_notFound() throws Exception {
-        createCommissionRate("LM1");
-        createCommissionRate("LM2");
+        createCommissionRate("LM1", LocalDate.now(), LocalDate.now().plusDays(30));
+        createCommissionRate("LM2", LocalDate.now(), LocalDate.now().plusDays(30));
         CommissionRateFilter filter = new CommissionRateFilter();
         filter.setLmId("LM333");
 
@@ -117,12 +130,46 @@ public class CommissionRateIntegrationTest {
         assertEquals(0, commissionRateDtos.size());
     }
 
+    @Test
+    void findCommissionRateByLmId_notFound() throws Exception{
+        createCommissionRate("LM1", LocalDate.now(), LocalDate.now().plusDays(30));
+        createCommissionRate("LM2", LocalDate.now(), LocalDate.now().plusDays(30));
+
+        mockMvc.perform(get("/tes/byLmId")
+                        .header("lmId", "LM99"))
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+
+    @Test
+    void getCommissionRateByDate() throws Exception{
+        createCommissionRate("LM1", LocalDate.of(2025, 1, 1), LocalDate.of(2025, 2, 1));
+        createCommissionRate("LM2", LocalDate.of(2025, 2, 2), LocalDate.of(2025, 3, 1));
+        createCommissionRate("LM3", LocalDate.of(2025, 3, 2), LocalDate.of(2025, 4, 1));
+        createCommissionRate("LM4", LocalDate.of(2025, 2, 1), LocalDate.of(2025, 2, 28));
+
+        MvcResult result = mockMvc.perform(get("/tes/date")
+                        .param("startDate", "2025-01-01")
+                        .param("endDate", "2025-03-01"))
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        List<CommissionRateDto> commissionRateDtos = getListFromResponse(result, CommissionRateDto.class);
+
+        assertEquals(3, commissionRateDtos.size());
+        assertTrue(commissionRateDtos.stream().anyMatch(dto -> dto.getLmId().equals("LM1")));
+        assertTrue(commissionRateDtos.stream().anyMatch(dto -> dto.getLmId().equals("LM2")));
+        assertTrue(commissionRateDtos.stream().anyMatch(dto -> dto.getLmId().equals("LM4")));
+        assertFalse(commissionRateDtos.stream().anyMatch(dto -> dto.getLmId().equals("LM3")));
+    }
+
     // ===================================================================================================================
     // = Implementation
     // ===================================================================================================================
 
 
-    private void createCommissionRate(String lmId) {
+    private void createCommissionRate(String lmId, LocalDate startDate, LocalDate endDate) {
         CommissionRate commissionRate = new CommissionRate();
         commissionRate.setAfId("AF1");
         commissionRate.setLmId(lmId);
@@ -133,9 +180,7 @@ public class CommissionRateIntegrationTest {
         commissionRate.setRateType(RateType.FIXED_AMOUNT);
         commissionRate.setStartDate(LocalDate.now());
         commissionRate.setStatus(CommissionRateStatus.OPEN);
-        LocalDate startDate = LocalDate.now();
         commissionRate.setStartDate(startDate);
-        LocalDate endDate = startDate.plusDays(30);
         commissionRate.setEndDate(endDate);
 
         CreationInfo creationInfo = new CreationInfo();

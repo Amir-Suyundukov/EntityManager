@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import ru.suyundukov.MyProject.entity.CommissionRate;
 import ru.suyundukov.MyProject.entity.CommissionRateFilter;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,5 +67,10 @@ public class CommissionRateRepositoryImpl implements CommissionRateRepository {
 
         criteriaQuery.select(commissionRateRoot).where(predicates.toArray(new Predicate[0]));
         return entityManager.createQuery(criteriaQuery).getResultList();
+    }
+
+    @Override
+    public List<CommissionRate> findByStartDateBetween(LocalDate startDate, LocalDate endDate) {
+        return commissionRateJpaRepository.findInInterval(startDate, endDate);
     }
 }

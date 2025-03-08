@@ -12,6 +12,7 @@ import ru.suyundukov.MyProject.entity.CommissionRate;
 import ru.suyundukov.MyProject.entity.CommissionRateFilter;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 
 @Slf4j
@@ -49,6 +50,12 @@ public class CommissionRateUseCase implements CommissionRateInbound {
     public List<CommissionRate> findByFilter(CommissionRateFilter filter) {
         log.info("ФИЛЬТРУЕМ");
         return commissionRateRepository.findByFilter(filter);
+    }
+
+    @Override
+    public List<CommissionRate> findByStartDateBetween(LocalDate startDate, LocalDate endDate) {
+        log.info("Поиск по времени");
+        return commissionRateRepository.findByStartDateBetween(startDate, endDate);
     }
 
     public static void validateDeadline(CommissionRate commissionRate) {

@@ -18,22 +18,26 @@ import java.util.List;
 @Setter
 public class CommissionRateDto {
     private String afId;
+    private String lmId;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private EnumDictionaryDto<CommissionType> commissionType;
     private EnumDictionaryDto<AgreementType> agreementType;
     private EnumDictionaryDto<AnnualRateType> annualType;
     private EnumDictionaryDto<PartyType> partyType;
     private EnumDictionaryDto<RateType> rateType;
     private EnumDictionaryDto<IndicatorType> indicatorType;
+    private EnumDictionaryDto<FinancingStatus> financingStatus;
+    private EnumDictionaryDto<CommissionRateStatus> status;
+    private List<AgreementDto> agreements;
+    private List<PartyDto> debtorsCreditors;
     private Boolean isSurcharge;
     private Integer fundingPeriodFrom;
     private Integer fundingPeriodTo;
     private BigDecimal rateValue;
     private BigDecimal fixSumValue;
     private Currency currency;
-    private EnumDictionaryDto<FinancingStatus> financingStatus;
     private String note;
-    private String lmId;
-    private EnumDictionaryDto<CommissionRateStatus> status;
     private RequirementDto requirement;
     private AgreementDto agreement;
     private PartyDto party;
@@ -41,8 +45,4 @@ public class CommissionRateDto {
     private SegmentDto segment;
     private String createUserFullName;
     private String createUserLogin;
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private List<AgreementDto> agreements;
-    private List<PartyDto> debtorsCreditors;
 }

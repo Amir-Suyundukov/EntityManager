@@ -28,7 +28,6 @@ public class CommissionRateCreateDto {
     private Currency currency;
     private FinancingStatus financingStatus;
     private String note;
-    private String lmId;
     private CommissionRateStatus status;
     private RequirementDto requirement;
     private AgreementDto agreement;
@@ -37,7 +36,5 @@ public class CommissionRateCreateDto {
     private SegmentDto segment;
     private String createUserFullName;
     private String createUserLogin;
-    private LocalDate startDate;
-    private LocalDate endDate;//старт и энд создать (и сделать что старт раньше чем енд и все в юз кейс)
     private List<PartyDto> debtorsCreditors;
 }
