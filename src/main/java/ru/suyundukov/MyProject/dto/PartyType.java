@@ -1,0 +1,15 @@
+package ru.suyundukov.MyProject.dto;
+
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Data
+public class PartyType {
+    private String code;
+    private String value;
+
+}

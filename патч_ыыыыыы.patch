@@ -1,0 +1,1991 @@
+Subject: [PATCH] патч ыыыыыы
+---
+Index: src/main/java/ru/suyundukov/MyProject/dto/FinancingStatusDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/dto/FinancingStatusDto.java b/src/main/java/ru/suyundukov/MyProject/dto/FinancingStatusDto.java
+new file mode 100644
+--- /dev/null	(date 1731592863453)
++++ b/src/main/java/ru/suyundukov/MyProject/dto/FinancingStatusDto.java	(date 1731592863453)
+@@ -0,0 +1,13 @@
++package ru.suyundukov.MyProject.dto;
++
++import lombok.*;
++
++@AllArgsConstructor
++@RequiredArgsConstructor
++@Getter
++@Setter
++@Data
++public class FinancingStatusDto {
++    private String code;
++    private String value;
++}
+Index: src/main/java/ru/suyundukov/MyProject/dto/CommissionRateStatusDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/dto/CommissionRateStatusDto.java b/src/main/java/ru/suyundukov/MyProject/dto/CommissionRateStatusDto.java
+new file mode 100644
+--- /dev/null	(date 1731358692203)
++++ b/src/main/java/ru/suyundukov/MyProject/dto/CommissionRateStatusDto.java	(date 1731358692203)
+@@ -0,0 +1,13 @@
++package ru.suyundukov.MyProject.dto;
++
++import lombok.*;
++
++@AllArgsConstructor
++@NoArgsConstructor
++@Getter
++@Setter
++@Data
++public class CommissionRateStatusDto {
++    private String code;
++    private String value;
++}
+Index: src/main/java/ru/suyundukov/MyProject/dto/PartyType.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/dto/PartyType.java b/src/main/java/ru/suyundukov/MyProject/dto/PartyType.java
+new file mode 100644
+--- /dev/null	(date 1731593274472)
++++ b/src/main/java/ru/suyundukov/MyProject/dto/PartyType.java	(date 1731593274472)
+@@ -0,0 +1,15 @@
++package ru.suyundukov.MyProject.dto;
++
++import jakarta.validation.constraints.NotNull;
++import lombok.*;
++
++@AllArgsConstructor
++@NoArgsConstructor
++@Getter
++@Setter
++@Data
++public class PartyType {
++    private String code;
++    private String value;
++
++}
+Index: src/main/java/ru/suyundukov/MyProject/dto/RateTypeDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/dto/RateTypeDto.java b/src/main/java/ru/suyundukov/MyProject/dto/RateTypeDto.java
+new file mode 100644
+--- /dev/null	(date 1731608814235)
++++ b/src/main/java/ru/suyundukov/MyProject/dto/RateTypeDto.java	(date 1731608814235)
+@@ -0,0 +1,14 @@
++package ru.suyundukov.MyProject.dto;
++
++import jakarta.validation.constraints.NotNull;
++import lombok.*;
++
++@AllArgsConstructor
++@NoArgsConstructor
++@Getter
++@Setter
++@Data
++public class RateTypeDto {
++    private String code;
++    private String value;
++}
+Index: src/main/java/ru/suyundukov/MyProject/dto/CommissionTypeDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/dto/CommissionTypeDto.java b/src/main/java/ru/suyundukov/MyProject/dto/CommissionTypeDto.java
+new file mode 100644
+--- /dev/null	(date 1731609721613)
++++ b/src/main/java/ru/suyundukov/MyProject/dto/CommissionTypeDto.java	(date 1731609721613)
+@@ -0,0 +1,13 @@
++package ru.suyundukov.MyProject.dto;
++
++import lombok.*;
++
++@AllArgsConstructor
++@NoArgsConstructor
++@Getter
++@Setter
++@Data
++public class CommissionTypeDto {
++    private String code;
++    private String value;
++}
+Index: src/test/java/ru/suyundukov/MyProject/entityTest/PersonControllerIntegrationTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/ru/suyundukov/MyProject/entityTest/PersonControllerIntegrationTest.java b/src/test/java/ru/suyundukov/MyProject/entityTest/PersonControllerIntegrationTest.java
+--- a/src/test/java/ru/suyundukov/MyProject/entityTest/PersonControllerIntegrationTest.java	(revision 63ee0e9a80c27241891cbd3e7d138760b919f268)
++++ b/src/test/java/ru/suyundukov/MyProject/entityTest/PersonControllerIntegrationTest.java	(date 1730751865461)
+@@ -71,6 +71,8 @@
+         assertEquals("Amir", savedPerson.getName());
+     }
+ 
++    //написать тест на обновление для всех put запросов
++
+ 
+     // ===================================================================================================================
+     // = Implementation
+@@ -91,6 +93,7 @@
+         }
+     }
+ 
++    // одинаковые методы вынести в абстрактный класс
+     private <T> T getFromResponse(MvcResult result, Class<?> clazz, Class<?>... classes) {
+         return mapToObject(getStringFromResponse(result), clazz, classes);
+     }
+Index: src/main/java/ru/suyundukov/MyProject/dto/IndicatorTypeDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/dto/IndicatorTypeDto.java b/src/main/java/ru/suyundukov/MyProject/dto/IndicatorTypeDto.java
+new file mode 100644
+--- /dev/null	(date 1731592034900)
++++ b/src/main/java/ru/suyundukov/MyProject/dto/IndicatorTypeDto.java	(date 1731592034900)
+@@ -0,0 +1,13 @@
++package ru.suyundukov.MyProject.dto;
++
++import lombok.*;
++
++@AllArgsConstructor
++@NoArgsConstructor
++@Getter
++@Setter
++@Data
++public class IndicatorTypeDto {
++    private String code;
++    private String value;
++}
+Index: src/main/java/ru/suyundukov/MyProject/dto/AgreementTypeDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/dto/AgreementTypeDto.java b/src/main/java/ru/suyundukov/MyProject/dto/AgreementTypeDto.java
+new file mode 100644
+--- /dev/null	(date 1731592385511)
++++ b/src/main/java/ru/suyundukov/MyProject/dto/AgreementTypeDto.java	(date 1731592385511)
+@@ -0,0 +1,13 @@
++package ru.suyundukov.MyProject.dto;
++
++import lombok.*;
++
++@AllArgsConstructor
++@NoArgsConstructor
++@Getter
++@Setter
++@Data
++public class AgreementTypeDto {
++    private String code;
++    private String value;
++}
+Index: src/test/java/ru/suyundukov/MyProject/entityTest/CommissionRateIntegrationTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/ru/suyundukov/MyProject/entityTest/CommissionRateIntegrationTest.java b/src/test/java/ru/suyundukov/MyProject/entityTest/CommissionRateIntegrationTest.java
+new file mode 100644
+--- /dev/null	(date 1731261747552)
++++ b/src/test/java/ru/suyundukov/MyProject/entityTest/CommissionRateIntegrationTest.java	(date 1731261747552)
+@@ -0,0 +1,154 @@
++package ru.suyundukov.MyProject.entityTest;
++
++import com.fasterxml.jackson.core.type.TypeReference;
++import com.fasterxml.jackson.databind.JavaType;
++import com.fasterxml.jackson.databind.ObjectMapper;
++import org.apache.commons.lang3.ArrayUtils;
++import org.junit.jupiter.api.Test;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
++import org.springframework.boot.test.context.SpringBootTest;
++import org.springframework.test.web.servlet.MockMvc;
++import org.springframework.test.web.servlet.MvcResult;
++import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
++import ru.suyundukov.MyProject.Repository.CommissionRateRepository;
++import ru.suyundukov.MyProject.dto.CommissionRateDto;
++import ru.suyundukov.MyProject.dto.IndividualTraderDto;
++import ru.suyundukov.MyProject.entity.*;
++
++import java.io.IOException;
++import java.net.URISyntaxException;
++import java.net.URL;
++import java.nio.file.Files;
++import java.nio.file.Paths;
++import java.time.LocalDate;
++import java.util.Currency;
++import java.util.List;
++
++import static java.nio.charset.StandardCharsets.UTF_8;
++import static org.junit.jupiter.api.Assertions.assertEquals;
++import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
++import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
++
++@SpringBootTest
++@AutoConfigureMockMvc
++public class CommissionRateIntegrationTest {
++
++    @Autowired
++    protected CommissionRateRepository commissionRateRepository;
++    @Autowired
++    protected ObjectMapper objectMapper;
++    @Autowired
++    protected MockMvc mockMvc;
++
++    @Test
++    void getCommissionRate_successfully() throws Exception {
++        createCommissionRate();
++
++        MvcResult result = mockMvc.perform(get("/tes/AF"))
++                .andDo(print())
++                .andExpect(MockMvcResultMatchers.status().isOk())
++                .andReturn();
++
++        CommissionRateDto commissionRateDto = getFromResponse(result, CommissionRateDto.class);
++        assertEquals("AF", commissionRateDto.getAfId());
++    }
++
++    // ===================================================================================================================
++    // = Implementation
++    // ===================================================================================================================
++
++
++    private void createCommissionRate() {
++        CommissionRate commissionRate = new CommissionRate();
++        commissionRate.setAfId("AF");
++        commissionRate.setCurrency(Currency.getInstance("USD"));
++        commissionRate.setFinancingStatus(FinancingStatus.UNFUNDED);
++        commissionRate.setCommissionType(CommissionType.AD_REWARD);
++        commissionRate.setIsSurcharge(false);
++        commissionRate.setRateType(RateType.FIXED_AMOUNT);
++        commissionRate.setStartDate(LocalDate.now());
++        commissionRate.setStatus(CommissionRateStatus.OPEN);
++
++        CreationInfo creationInfo = new CreationInfo();
++        creationInfo.setCreateUserFullName("Default User");
++        creationInfo.setCreateUserLogin("USER");
++        commissionRate.setCreationInfo(creationInfo);
++
++        commissionRateRepository.save(commissionRate);
++    }
++
++    private <T> List<T> getListFromResponse(MvcResult result, Class<?>... classes) {
++        try {
++            return getFromResponse(result, List.class, classes);
++        } catch (Exception e) {
++            throw new RuntimeException(e);
++        }
++    }
++
++    private <T> T getFromResponse(MvcResult result, Class<?> clazz, Class<?>... classes) {
++        return mapToObject(getStringFromResponse(result), clazz, classes);
++    }
++
++    protected <T> T mapToObject(String string, Class<?> clazz, Class<?>... classes) {
++        try {
++            if (classes.length == 0) {
++                return (T) objectMapper.readValue(string, clazz);
++            }
++
++            Class<?>[] newClasses = ArrayUtils.addFirst(classes, clazz);
++            JavaType currentType = null;
++            for (int i = newClasses.length - 1; i > 0; i--) {
++                if (currentType == null) {
++                    currentType = objectMapper.getTypeFactory().constructParametricType(newClasses[i - 1], newClasses[i]);
++                } else {
++                    currentType = objectMapper.getTypeFactory().constructParametricType(newClasses[i - 1], currentType);
++                }
++            }
++
++            return objectMapper.readValue(string, currentType);
++        } catch (Exception e) {
++            throw new RuntimeException(e);
++        }
++    }
++
++    private String getStringFromResponse(MvcResult result) {
++        try {
++            return result.getResponse().getContentAsString(UTF_8);
++        } catch (Exception e) {
++            throw new RuntimeException(e);
++        }
++    }
++// ===================================================================================================================
++    // = File utils
++    // ===================================================================================================================
++
++    protected String readFile(String fileName) {
++        try {
++            URL resource = getClass().getResource(fileName);
++            assert resource != null;
++            return Files.readString(Paths.get(resource.toURI()));
++        } catch (IOException | URISyntaxException e) {
++            throw new IllegalArgumentException(e);
++        }
++    }
++
++    protected <T> T readFromFile(String fileName) {
++        String content = readFile(fileName);
++        try {
++            return objectMapper.readValue(content, new TypeReference<>() {
++            });
++        } catch (Exception e) {
++            throw new RuntimeException(e);
++        }
++    }
++
++    protected <T> T readFromFile(String fileName, Class<?> clazz, Class<?>... classes) {
++        String content = readFile(fileName);
++        return mapToObject(content, clazz, classes);
++    }
++
++    protected <T> List<T> readListFromFile(String fileName, Class<?>... classes) {
++        return readFromFile(fileName, List.class, classes);
++    }
++}
+Index: src/main/java/ru/suyundukov/MyProject/dto/AnnualRateTypeDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/dto/AnnualRateTypeDto.java b/src/main/java/ru/suyundukov/MyProject/dto/AnnualRateTypeDto.java
+new file mode 100644
+--- /dev/null	(date 1731592585717)
++++ b/src/main/java/ru/suyundukov/MyProject/dto/AnnualRateTypeDto.java	(date 1731592585717)
+@@ -0,0 +1,13 @@
++package ru.suyundukov.MyProject.dto;
++
++import lombok.*;
++
++@AllArgsConstructor
++@NoArgsConstructor
++@Getter
++@Setter
++@Data
++public class AnnualRateTypeDto {
++    private String code;
++    private String value;
++}
+Index: src/main/java/ru/suyundukov/MyProject/entity/CommissionRate.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/entity/CommissionRate.java b/src/main/java/ru/suyundukov/MyProject/entity/CommissionRate.java
+new file mode 100644
+--- /dev/null	(date 1731256526736)
++++ b/src/main/java/ru/suyundukov/MyProject/entity/CommissionRate.java	(date 1731256526736)
+@@ -0,0 +1,179 @@
++package ru.suyundukov.MyProject.entity;
++
++import com.fasterxml.jackson.annotation.JsonIgnore;
++import jakarta.persistence.*;
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++import org.springframework.data.jpa.repository.EntityGraph;
++
++import java.math.BigDecimal;
++import java.time.LocalDate;
++import java.util.Currency;
++import java.util.List;
++
++@NamedEntityGraph(
++        name = "infinite code",
++        attributeNodes = {
++                @NamedAttributeNode(value = "agreement"),
++                @NamedAttributeNode(value = "contract"),
++                @NamedAttributeNode(value = "party"),
++                @NamedAttributeNode(value = "requirement"),
++                @NamedAttributeNode(value = "segment"),
++                @NamedAttributeNode(value = "debtorsCreditors")
++        }
++)
++@Entity
++@Getter
++@Setter
++@AllArgsConstructor
++@NoArgsConstructor
++@Table(name = "commission_rate")
++public class CommissionRate extends BusinessEntity {//главный класс
++    /**
++     * AF id
++     */
++    @Column(name = "af_id", nullable = false)
++    private String afId;
++    /**
++     * Тип комиссии
++     */
++    @Column(name = "commission_type", nullable = false)
++    @Enumerated(EnumType.STRING)
++    private CommissionType commissionType;
++    /**
++     * Тип ставки
++     */
++    @Column(name = "rate_type", nullable = false)
++    @Enumerated(EnumType.STRING)
++    private RateType rateType;
++    /**
++     * Тип индикатора
++     */
++    @Column(name = "indicator_type")
++    @Enumerated(EnumType.STRING)
++    private IndicatorType indicatorType;
++    /**
++     * Признак надбавки
++     */
++    @Column(name = "is_surcharge", nullable = false)
++    private Boolean isSurcharge;
++    /**
++     * Дата начала действия ставки
++     */
++    @Column(name = "start_date", nullable = false)
++    private LocalDate startDate;
++    /**
++     * Дата окончания действия ставки
++     */
++    @Column(name = "end_date")
++    private LocalDate endDate;
++    /**
++     * Срок фондирования От (дней)
++     */
++    @Column(name = "funding_period_from")
++    private Integer fundingPeriodFrom;
++    /**
++     * Срок фондирования До (дней)
++     */
++    @Column(name = "funding_period_to")
++    private Integer fundingPeriodTo;
++    /**
++     * Значение ставки/надбавки
++     */
++    @Column(name = "rate_value")
++    private BigDecimal rateValue;
++    /**
++     * Значение фиксированной суммы
++     */
++    @Column(name = "fix_sum_value")
++    private BigDecimal fixSumValue;
++    /**
++     * Валюта
++     */
++    @Column(name = "currency", nullable = false)
++    private Currency currency;
++    /**
++     * Статус финансирования
++     */
++    @Column(name = "financing_status", nullable = false)
++    @Enumerated(EnumType.STRING)
++    private FinancingStatus financingStatus;
++    /**
++     * Примечание
++     */
++    @Column(name = "note")
++    private String note;
++    /**
++     * LM ID
++     */
++    @Column(name = "lm_id")
++    private String lmId;
++    /**
++     * Статус
++     */
++    @Column(name = "status", nullable = false)
++    @Enumerated(EnumType.STRING)
++    private CommissionRateStatus status;
++    /**
++     * Данные поручения/требования
++     */
++    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
++    @JoinColumn(name = "requirement_id")
++    private Requirement requirement;
++    /**
++     * Данные договора
++     */
++    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
++    @JoinColumn(name = "agreement_id")
++    private Agreement agreement;
++    /**
++     * Данные контрагента
++     */
++    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
++    @JoinColumn(name = "party_id")
++    private Party party;
++    /**
++     * Контракт
++     */
++    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
++    @JoinColumn(name = "contract_id")
++    private Contract contract;
++    /**
++     * Кредиторы/дебиторы
++     */
++    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
++    @JoinColumn(name = "commission_rate_id")
++    private List<Party> debtorsCreditors;
++    /**
++     * Сегмент контрагента (Поставщика)
++     */
++    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
++    @JoinColumn(name = "segment_id")
++    private Segment segment;
++
++    /**
++     * Признак: обновляется / создается LM
++     */
++    @Transient
++    private Boolean isLmUpdating;
++
++    public CommissionRate setDebtorsCreditors(List<Party> debtorsCreditors) {
++        if (this.debtorsCreditors == null) {
++            this.debtorsCreditors = debtorsCreditors;
++        } else if (debtorsCreditors == null) {
++            this.debtorsCreditors.clear();
++        } else {
++            this.debtorsCreditors.clear();
++            this.debtorsCreditors.addAll(debtorsCreditors);
++        }
++        return this;
++    }
++
++    @JsonIgnore
++    public boolean isActive() {
++        LocalDate today = LocalDate.now();
++        return !today.isBefore(startDate) && (endDate == null || !today.isAfter(endDate));
++    }
++}
+Index: src/main/java/ru/suyundukov/MyProject/entity/BusinessEntity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/entity/BusinessEntity.java b/src/main/java/ru/suyundukov/MyProject/entity/BusinessEntity.java
+new file mode 100644
+--- /dev/null	(date 1731095780822)
++++ b/src/main/java/ru/suyundukov/MyProject/entity/BusinessEntity.java	(date 1731095780822)
+@@ -0,0 +1,42 @@
++package ru.suyundukov.MyProject.entity;
++
++import jakarta.persistence.Embedded;
++import jakarta.persistence.MappedSuperclass;
++import jakarta.persistence.PrePersist;
++import jakarta.persistence.PreUpdate;
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++import lombok.experimental.Accessors;
++
++import java.time.Instant;
++
++@MappedSuperclass
++@Getter
++@Setter
++@AllArgsConstructor
++@NoArgsConstructor
++@Accessors(chain = true)
++public abstract class BusinessEntity extends DomainObject {
++    @Embedded
++    private CreationInfo creationInfo;
++    @Embedded
++    private UpdateInfo updateInfo;
++
++    @PrePersist
++    public void prePersist() {
++        if (creationInfo == null){
++            creationInfo = new CreationInfo();
++        }
++        creationInfo.setCreateDateTime(Instant.now());
++    }
++
++    @PreUpdate
++    public void preUpdate() {
++        if (updateInfo == null) {
++            updateInfo = new UpdateInfo();
++        }
++        updateInfo.setUpdateDateTime(Instant.now());
++    }
++}
+Index: src/main/java/ru/suyundukov/MyProject/dto/RequirementDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/dto/RequirementDto.java b/src/main/java/ru/suyundukov/MyProject/dto/RequirementDto.java
+new file mode 100644
+--- /dev/null	(date 1731159472936)
++++ b/src/main/java/ru/suyundukov/MyProject/dto/RequirementDto.java	(date 1731159472936)
+@@ -0,0 +1,21 @@
++package ru.suyundukov.MyProject.dto;
++
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++
++import java.time.LocalDate;
++
++@AllArgsConstructor
++@NoArgsConstructor
++@Getter
++@Setter
++public class RequirementDto {
++    private String afId;
++    private String number;
++    private LocalDate date;
++    private String registryAfId;
++    private String registryNumber;
++    private LocalDate registryDate;
++}
+Index: src/main/java/ru/suyundukov/MyProject/entity/DomainObject.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/entity/DomainObject.java b/src/main/java/ru/suyundukov/MyProject/entity/DomainObject.java
+new file mode 100644
+--- /dev/null	(date 1730920650945)
++++ b/src/main/java/ru/suyundukov/MyProject/entity/DomainObject.java	(date 1730920650945)
+@@ -0,0 +1,31 @@
++package ru.suyundukov.MyProject.entity;
++
++import jakarta.persistence.*;
++import lombok.Getter;
++import lombok.Setter;
++import lombok.ToString;
++
++import java.util.HashSet;
++import java.util.Set;
++
++@MappedSuperclass
++@Getter
++@Setter
++@ToString
++public abstract class DomainObject {
++    @Id
++    @Column(name = "id")
++    @GeneratedValue(strategy = GenerationType.IDENTITY)
++    private Long id;
++
++    @Transient
++    private Set<String> errors;
++
++    public void addError(String error) {
++        if (errors == null) {
++            errors = new HashSet<>();
++        }
++        errors.add(error);
++    }
++}
++
+Index: src/main/java/ru/suyundukov/MyProject/dto/AgreementDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/dto/AgreementDto.java b/src/main/java/ru/suyundukov/MyProject/dto/AgreementDto.java
+new file mode 100644
+--- /dev/null	(date 1731159472937)
++++ b/src/main/java/ru/suyundukov/MyProject/dto/AgreementDto.java	(date 1731159472937)
+@@ -0,0 +1,20 @@
++package ru.suyundukov.MyProject.dto;
++
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++import ru.suyundukov.MyProject.entity.AgreementType;
++
++import java.time.LocalDate;
++
++@AllArgsConstructor
++@NoArgsConstructor
++@Getter
++@Setter
++public class AgreementDto {
++    private String afId;
++    private AgreementType type;
++    private String number;
++    private LocalDate date;
++}
+Index: src/main/java/ru/suyundukov/MyProject/entity/CreationInfo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/entity/CreationInfo.java b/src/main/java/ru/suyundukov/MyProject/entity/CreationInfo.java
+new file mode 100644
+--- /dev/null	(date 1730919624106)
++++ b/src/main/java/ru/suyundukov/MyProject/entity/CreationInfo.java	(date 1730919624106)
+@@ -0,0 +1,34 @@
++package ru.suyundukov.MyProject.entity;
++
++import com.fasterxml.jackson.annotation.JsonIgnore;
++import jakarta.persistence.Column;
++import jakarta.persistence.Embeddable;
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++import lombok.experimental.Accessors;
++
++import java.time.Instant;
++import java.time.LocalDate;
++import java.time.ZoneId;
++
++@Embeddable
++@Getter
++@Setter
++@Accessors(chain = true)
++@NoArgsConstructor
++@AllArgsConstructor
++public class CreationInfo {
++    @Column(name = "create_user_login", nullable = false)
++    private String createUserLogin;
++    @Column(name = "create_user_full_name", nullable = false)
++    private String createUserFullName;
++    @Column(name = "create_date_time", nullable = false, updatable = false)
++    private Instant createDateTime;
++
++    @JsonIgnore
++    public LocalDate getCreateDate() {
++        return createDateTime.atZone(ZoneId.systemDefault()).toLocalDate();
++    }
++}
+Index: src/main/java/ru/suyundukov/MyProject/dto/PartyDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/dto/PartyDto.java b/src/main/java/ru/suyundukov/MyProject/dto/PartyDto.java
+new file mode 100644
+--- /dev/null	(date 1731159472937)
++++ b/src/main/java/ru/suyundukov/MyProject/dto/PartyDto.java	(date 1731159472937)
+@@ -0,0 +1,20 @@
++package ru.suyundukov.MyProject.dto;
++
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++import ru.suyundukov.MyProject.entity.PartyType;
++
++@AllArgsConstructor
++@NoArgsConstructor
++@Getter
++@Setter
++public class PartyDto {
++    private String afId;
++    private PartyType type;
++    private String userName;
++    private String shortName;
++    private String inn;
++    private String mainPinEq;
++}
+Index: src/main/java/ru/suyundukov/MyProject/entity/UpdateInfo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/entity/UpdateInfo.java b/src/main/java/ru/suyundukov/MyProject/entity/UpdateInfo.java
+new file mode 100644
+--- /dev/null	(date 1730919698215)
++++ b/src/main/java/ru/suyundukov/MyProject/entity/UpdateInfo.java	(date 1730919698215)
+@@ -0,0 +1,31 @@
++package ru.suyundukov.MyProject.entity;
++
++import jakarta.persistence.Column;
++import jakarta.persistence.Embeddable;
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++import lombok.experimental.Accessors;
++
++import java.io.Serial;
++import java.io.Serializable;
++import java.time.Instant;
++
++@Embeddable
++@Accessors(chain = true)
++@Getter
++@Setter
++@AllArgsConstructor
++@NoArgsConstructor
++public class UpdateInfo implements Serializable {
++    @Serial
++    private static final long serialVersionUID = -8259900372449892356L;
++
++    @Column(name = "update_user_login")
++    private String updateUserLogin;
++    @Column(name = "update_user_full_name")
++    private String updateUserFullName;
++    @Column(name = "update_date_time")
++    private Instant updateDateTime;
++}
+Index: src/main/java/ru/suyundukov/MyProject/dto/ContractDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/dto/ContractDto.java b/src/main/java/ru/suyundukov/MyProject/dto/ContractDto.java
+new file mode 100644
+--- /dev/null	(date 1731159472956)
++++ b/src/main/java/ru/suyundukov/MyProject/dto/ContractDto.java	(date 1731159472956)
+@@ -0,0 +1,15 @@
++package ru.suyundukov.MyProject.dto;
++
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++
++@AllArgsConstructor
++@NoArgsConstructor
++@Getter
++@Setter
++public class ContractDto {
++    private String afId;
++    private String number;
++}
+Index: src/main/java/ru/suyundukov/MyProject/entity/CommissionType.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/entity/CommissionType.java b/src/main/java/ru/suyundukov/MyProject/entity/CommissionType.java
+new file mode 100644
+--- /dev/null	(date 1731586775165)
++++ b/src/main/java/ru/suyundukov/MyProject/entity/CommissionType.java	(date 1731586775165)
+@@ -0,0 +1,34 @@
++package ru.suyundukov.MyProject.entity;
++
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.RequiredArgsConstructor;
++
++import java.util.Set;
++
++/**
++ * Тип комиссии
++ */
++
++
++@Getter
++@RequiredArgsConstructor
++public enum CommissionType {
++    AUDZ("Комиссия за АУДЗ", true),
++    DOCUMENT_PROCESSING("Комиссия за обработку документов", true),
++    COM_CREDIT("Комиссия за ком. кредит", false),
++    DEBTOR_SURETY("Комиссия за поручительство за Дебитора", false),
++    FUNDING("Комиссия за финансирование", true),
++    FUDZ("Комиссия за ФУДЗ", true),
++    AD_REWARD("Вознаграждение по АД", true),
++    PAYMENT_DEFERRAL("Вознаграждение за отсрочку платежа", true),
++    AD_REWARD_WITHOUT_PDP("Вознаграждение по АД без ПДП", true);
++
++    private final String value;
++    private final Boolean isVatSubject;
++
++    public static Set<CommissionType> getAgencyCommissionTypes() {
++        return Set.of(AD_REWARD, AD_REWARD_WITHOUT_PDP);
++    }
++}
++
+Index: src/main/java/ru/suyundukov/MyProject/dto/SegmentDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/dto/SegmentDto.java b/src/main/java/ru/suyundukov/MyProject/dto/SegmentDto.java
+new file mode 100644
+--- /dev/null	(date 1731159472929)
++++ b/src/main/java/ru/suyundukov/MyProject/dto/SegmentDto.java	(date 1731159472929)
+@@ -0,0 +1,15 @@
++package ru.suyundukov.MyProject.dto;
++
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++
++@AllArgsConstructor
++@NoArgsConstructor
++@Getter
++@Setter
++public class SegmentDto {
++    private String code;
++    private String value;
++}
+Index: src/main/java/ru/suyundukov/MyProject/entity/Party.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/entity/Party.java b/src/main/java/ru/suyundukov/MyProject/entity/Party.java
+new file mode 100644
+--- /dev/null	(date 1730920170236)
++++ b/src/main/java/ru/suyundukov/MyProject/entity/Party.java	(date 1730920170236)
+@@ -0,0 +1,48 @@
++package ru.suyundukov.MyProject.entity;
++
++import jakarta.persistence.*;
++import lombok.Getter;
++import lombok.Setter;
++import lombok.experimental.Accessors;
++
++/**
++ * Слепок контрагента
++ */
++@Entity
++@Table(name = "com_party")
++@Getter
++@Setter
++@Accessors(chain = true)
++public class Party extends DomainObject {
++    /**
++     * AF id контрагента
++     */
++    @Column(name = "af_id", nullable = false)
++    private String afId;
++    /**
++     * Тип контрагента
++     */
++    @Column(name = "type", nullable = false)
++    @Enumerated(EnumType.STRING)
++    private PartyType type;
++    /**
++     * Пользовательское наименование
++     */
++    @Column(name = "user_name", nullable = false)
++    private String userName;
++    /**
++     * Сокращенное наименование
++     */
++    @Column(name = "short_name")
++    private String shortName;
++    /**
++     * ИНН/КИО
++     */
++    @Column(name = "inn")
++    private String inn;
++    /**
++     * Основной ПИН EQ
++     */
++    @Column(name = "main_pin_eq")
++    private String mainPinEq;
++}
+Index: src/main/java/ru/suyundukov/MyProject/entity/PartyType.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/entity/PartyType.java b/src/main/java/ru/suyundukov/MyProject/entity/PartyType.java
+new file mode 100644
+--- /dev/null	(date 1731593274463)
++++ b/src/main/java/ru/suyundukov/MyProject/entity/PartyType.java	(date 1731593274463)
+@@ -0,0 +1,16 @@
++package ru.suyundukov.MyProject.entity;
++
++import lombok.Getter;
++import lombok.RequiredArgsConstructor;
++
++/**
++ * Тип контрагента
++ */
++@RequiredArgsConstructor
++@Getter
++public enum PartyType {
++    UL("UL"),
++    IP("IP"),
++    FL("FL");
++    private final String value;
++}
+Index: src/main/java/ru/suyundukov/MyProject/entity/Contract.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/entity/Contract.java b/src/main/java/ru/suyundukov/MyProject/entity/Contract.java
+new file mode 100644
+--- /dev/null	(date 1730920307374)
++++ b/src/main/java/ru/suyundukov/MyProject/entity/Contract.java	(date 1730920307374)
+@@ -0,0 +1,33 @@
++package ru.suyundukov.MyProject.entity;
++
++import jakarta.persistence.Column;
++import jakarta.persistence.Entity;
++import jakarta.persistence.Table;
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++import lombok.experimental.Accessors;
++
++/**
++ * Слепок Контракта
++ */
++@Entity
++@Table(name = "com_contract")
++@Accessors(chain = true)
++@NoArgsConstructor
++@AllArgsConstructor
++@Getter
++@Setter
++public class Contract extends DomainObject {
++    /**
++     * AF ID контракта
++     */
++    @Column(name = "af_id", nullable = false)
++    private String afId;
++    /**
++     * Номер контракта
++     */
++    @Column(name = "number", nullable = false)
++    private String number;
++}
+Index: src/main/java/ru/suyundukov/MyProject/entity/Segment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/entity/Segment.java b/src/main/java/ru/suyundukov/MyProject/entity/Segment.java
+new file mode 100644
+--- /dev/null	(date 1730920475976)
++++ b/src/main/java/ru/suyundukov/MyProject/entity/Segment.java	(date 1730920475976)
+@@ -0,0 +1,24 @@
++package ru.suyundukov.MyProject.entity;
++
++import jakarta.persistence.Column;
++import jakarta.persistence.Entity;
++import jakarta.persistence.Table;
++import lombok.Getter;
++import lombok.Setter;
++import lombok.experimental.Accessors;
++
++/**
++ * Слепок Сегмента
++ */
++@Entity
++@Table(name = "com_segment")
++@Accessors(chain = true)
++@Getter
++@Setter
++public class Segment extends DomainObject {
++    @Column(name = "code", nullable = false)
++    private String code;
++    @Column(name = "value", nullable = false)
++    private String value;
++}
++
+Index: src/main/java/ru/suyundukov/MyProject/controller/CommissionRateController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/controller/CommissionRateController.java b/src/main/java/ru/suyundukov/MyProject/controller/CommissionRateController.java
+new file mode 100644
+--- /dev/null	(date 1731271120747)
++++ b/src/main/java/ru/suyundukov/MyProject/controller/CommissionRateController.java	(date 1731271120747)
+@@ -0,0 +1,37 @@
++package ru.suyundukov.MyProject.controller;
++
++import io.swagger.v3.oas.annotations.Operation;
++import io.swagger.v3.oas.annotations.tags.Tag;
++import lombok.RequiredArgsConstructor;
++import org.springframework.http.ResponseEntity;
++import org.springframework.web.bind.annotation.*;
++import ru.suyundukov.MyProject.api.CommissionRateInbound;
++import ru.suyundukov.MyProject.dto.CommissionRateCreateDto;
++import ru.suyundukov.MyProject.dto.CommissionRateDto;
++import ru.suyundukov.MyProject.entity.CommissionRate;
++import ru.suyundukov.MyProject.mapper.CommissionRateMapper;
++
++@RestController
++@RequiredArgsConstructor
++@RequestMapping("/tes")
++@Tag(name = "Контроллер ставки комисии")
++public class CommissionRateController {
++    private final CommissionRateInbound commissionRateInbound;
++    private final CommissionRateMapper commissionRateMapper;
++
++    @GetMapping("/{afId}")
++    @Operation(description = "Получение данных Ставки комисии по afId")
++    public CommissionRateDto getCommissionRateByAfId(@PathVariable String afId) {
++        CommissionRate commissionRate = commissionRateInbound.getByAfId(afId);
++        return commissionRateMapper.mapToDto(commissionRate);
++    }
++
++
++    @PostMapping
++    @Operation(description = "Создание Ставки Комисии")
++    public CommissionRateDto createCommissionRate(@RequestBody CommissionRateCreateDto commissionRateCreateDto) {
++        CommissionRate commissionRate = commissionRateMapper.mapToDomain(commissionRateCreateDto);
++        CommissionRate savedCommissionRate = commissionRateInbound.createCommissionRate(commissionRate);
++        return commissionRateMapper.mapToDto(savedCommissionRate);
++    }
++}
+\ No newline at end of file
+Index: src/main/java/ru/suyundukov/MyProject/dto/EnumDictionaryDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/dto/EnumDictionaryDto.java b/src/main/java/ru/suyundukov/MyProject/dto/EnumDictionaryDto.java
+new file mode 100644
+--- /dev/null	(date 1731591465550)
++++ b/src/main/java/ru/suyundukov/MyProject/dto/EnumDictionaryDto.java	(date 1731591465550)
+@@ -0,0 +1,19 @@
++package ru.suyundukov.MyProject.dto;
++
++import io.swagger.v3.oas.annotations.media.Schema;
++import lombok.AllArgsConstructor;
++import lombok.Data;
++import lombok.NoArgsConstructor;
++
++@Data
++@NoArgsConstructor
++@AllArgsConstructor
++@Schema(description = "Простой справочник")
++public class EnumDictionaryDto<T extends Enum<T>> {
++    @Schema(description = "Код", example = "CODE")
++    private T code;
++    @Schema(description = "Значение", example = "Value")
++    private String value;
++//    @Schema(description = "хз", example = "isVatSubject")
++//    private Boolean isVatSubject;
++}
+\ No newline at end of file
+Index: src/main/java/ru/suyundukov/MyProject/api/CommissionRateInbound.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/api/CommissionRateInbound.java b/src/main/java/ru/suyundukov/MyProject/api/CommissionRateInbound.java
+new file mode 100644
+--- /dev/null	(date 1731270424933)
++++ b/src/main/java/ru/suyundukov/MyProject/api/CommissionRateInbound.java	(date 1731270424933)
+@@ -0,0 +1,19 @@
++package ru.suyundukov.MyProject.api;
++
++import ru.suyundukov.MyProject.entity.CommissionRate;
++
++public interface CommissionRateInbound {
++    /**
++     * Поиск ставки комисии
++     * @param afId
++     * @return найденая ставка комисии
++     */
++    CommissionRate getByAfId(String afId);
++
++    /**
++     * Создание ставки комисии
++     * @param commissionRate
++     * @return создан ставка комисии
++     */
++    CommissionRate createCommissionRate(CommissionRate commissionRate);
++}
+Index: src/main/java/ru/suyundukov/MyProject/mapper/CommissionRateUseCase.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/mapper/CommissionRateUseCase.java b/src/main/java/ru/suyundukov/MyProject/mapper/CommissionRateUseCase.java
+new file mode 100644
+--- /dev/null	(date 1731269800205)
++++ b/src/main/java/ru/suyundukov/MyProject/mapper/CommissionRateUseCase.java	(date 1731269800205)
+@@ -0,0 +1,33 @@
++package ru.suyundukov.MyProject.mapper;
++
++import lombok.RequiredArgsConstructor;
++import org.springframework.stereotype.Component;
++import org.springframework.transaction.annotation.Transactional;
++import ru.suyundukov.MyProject.Repository.CommissionRateRepository;
++import ru.suyundukov.MyProject.api.CommissionRateInbound;
++import ru.suyundukov.MyProject.entity.CommissionRate;
++
++import lombok.extern.slf4j.Slf4j;
++import java.time.Instant;
++
++@Slf4j
++@Component
++@RequiredArgsConstructor
++public class CommissionRateUseCase implements CommissionRateInbound {
++    private final CommissionRateRepository commissionRateRepository;
++
++    @Override
++    @Transactional
++    public CommissionRate getByAfId(String afId) {
++        log.info("Getting commission rate by AfId: {}", afId);
++        return commissionRateRepository.getByAfId(afId);
++    }
++
++    @Override
++    @Transactional
++    public CommissionRate createCommissionRate(CommissionRate commissionRate) {
++        log.info("Creating commission rate");
++        commissionRate.getCreationInfo().setCreateDateTime(Instant.now());
++        return commissionRateRepository.save(commissionRate);
++    }
++}
+Index: src/main/java/ru/suyundukov/MyProject/Repository/CommissionRateRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/Repository/CommissionRateRepository.java b/src/main/java/ru/suyundukov/MyProject/Repository/CommissionRateRepository.java
+new file mode 100644
+--- /dev/null	(date 1731271450630)
++++ b/src/main/java/ru/suyundukov/MyProject/Repository/CommissionRateRepository.java	(date 1731271450630)
+@@ -0,0 +1,19 @@
++package ru.suyundukov.MyProject.Repository;
++
++import ru.suyundukov.MyProject.entity.CommissionRate;
++
++public interface CommissionRateRepository {
++    /**
++     * Получить запись ставки комисии
++     * @param afId
++     * @return ставка комисии
++     */
++    CommissionRate getByAfId(String afId);
++
++    /**
++     * Сохранение ставки комисии
++     * @param commissionRate
++     * @return ставка комисии
++     */
++    CommissionRate save(CommissionRate commissionRate);
++}
+Index: src/main/java/ru/suyundukov/MyProject/entity/RateType.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/entity/RateType.java b/src/main/java/ru/suyundukov/MyProject/entity/RateType.java
+new file mode 100644
+--- /dev/null	(date 1730919777838)
++++ b/src/main/java/ru/suyundukov/MyProject/entity/RateType.java	(date 1730919777838)
+@@ -0,0 +1,23 @@
++package ru.suyundukov.MyProject.entity;
++
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++
++/**
++ * Тип ставки
++ */
++@AllArgsConstructor
++@Getter
++public enum RateType {
++    //CHECKSTYLE:OFF
++    FIXED_ANNUAL("% годовых", AnnualRateType.FIXED, "% годовых фикс."),
++    FLOATING_ANNUAL("% годовых", AnnualRateType.FLOATING, "% годовых плав."),
++    FIXED_DAILY("% в день", AnnualRateType.FIXED, "% в день фикс."),
++    FIXED_AMOUNT("фиксированная сумма", null, "фиксированная сумма");
++
++    //CHECKSTYLE:ON
++    private final String value;
++    private final AnnualRateType annualRateType;
++    private final String userName;
++}
++
+Index: src/main/java/ru/suyundukov/MyProject/dto/AgreementCreateDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/dto/AgreementCreateDto.java b/src/main/java/ru/suyundukov/MyProject/dto/AgreementCreateDto.java
+new file mode 100644
+--- /dev/null	(date 1731160329430)
++++ b/src/main/java/ru/suyundukov/MyProject/dto/AgreementCreateDto.java	(date 1731160329430)
+@@ -0,0 +1,20 @@
++package ru.suyundukov.MyProject.dto;
++
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++import ru.suyundukov.MyProject.entity.AgreementType;
++
++import java.time.LocalDate;
++
++@AllArgsConstructor
++@NoArgsConstructor
++@Getter
++@Setter
++public class AgreementCreateDto {
++    private String afId;
++    private AgreementType type;
++    private String number;
++    private LocalDate date;
++}
+Index: src/main/java/ru/suyundukov/MyProject/entity/AnnualRateType.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/entity/AnnualRateType.java b/src/main/java/ru/suyundukov/MyProject/entity/AnnualRateType.java
+new file mode 100644
+--- /dev/null	(date 1730919837117)
++++ b/src/main/java/ru/suyundukov/MyProject/entity/AnnualRateType.java	(date 1730919837117)
+@@ -0,0 +1,25 @@
++package ru.suyundukov.MyProject.entity;
++
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++
++/**
++ * Тип годовой ставки
++ */
++@AllArgsConstructor
++@Getter
++public enum AnnualRateType {
++    FIXED("Фиксированная"),
++    FLOATING("Плавающая");
++
++    private final String value;
++
++    public static AnnualRateType getByCode(String code) {
++        for (AnnualRateType e : values()) {
++            if (e.name().equals(code)) {
++                return e;
++            }
++        }
++        return null;
++    }
++}
+Index: src/main/java/ru/suyundukov/MyProject/dto/ContractCreateDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/dto/ContractCreateDto.java b/src/main/java/ru/suyundukov/MyProject/dto/ContractCreateDto.java
+new file mode 100644
+--- /dev/null	(date 1731160329442)
++++ b/src/main/java/ru/suyundukov/MyProject/dto/ContractCreateDto.java	(date 1731160329442)
+@@ -0,0 +1,15 @@
++package ru.suyundukov.MyProject.dto;
++
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++
++@AllArgsConstructor
++@NoArgsConstructor
++@Getter
++@Setter
++public class ContractCreateDto {
++    private String afId;
++    private String number;
++}
+Index: src/main/java/ru/suyundukov/MyProject/entity/IndicatorType.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/entity/IndicatorType.java b/src/main/java/ru/suyundukov/MyProject/entity/IndicatorType.java
+new file mode 100644
+--- /dev/null	(date 1730919883451)
++++ b/src/main/java/ru/suyundukov/MyProject/entity/IndicatorType.java	(date 1730919883451)
+@@ -0,0 +1,36 @@
++package ru.suyundukov.MyProject.entity;
++
++import lombok.Getter;
++import lombok.RequiredArgsConstructor;
++
++/**
++ * Тип индикатора
++ * данный справочник продублирован в сервисах: agreements, monetary-claims, products
++ */
++@RequiredArgsConstructor
++@Getter
++public enum IndicatorType {
++    KEYRATECB("Ключевая ставка ЦБ РФ"),
++    PS("EURIBOR 1W"),
++    PV("EURIBOR 1M"),
++    PX("EURIBOR 3M"),
++    OY("EURIBOR 6M"),
++    OS("EURIBOR 1Y"),
++    KI("SHIBOR ON"),
++    KJ("SHIBOR 1W"),
++    KK("SHIBOR 2W"),
++    KL("SHIBOR 1M"),
++    KM("SHIBOR 3M"),
++    KN("SHIBOR 6M"),
++    KO("SHIBOR 9M"),
++    KP("SHIBOR 1Y"),
++    L5("RUONIA"),
++    IR("RUONIA Индекс"),
++    JX("RUONIA 1M"),
++    JY("RUONIA 3M"),
++    JZ("RUONIA 6M"),
++    IS("Ставка SOFR");
++
++    private final String value;
++}
++
+Index: src/main/java/ru/suyundukov/MyProject/dto/PartyCreateDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/dto/PartyCreateDto.java b/src/main/java/ru/suyundukov/MyProject/dto/PartyCreateDto.java
+new file mode 100644
+--- /dev/null	(date 1731160329436)
++++ b/src/main/java/ru/suyundukov/MyProject/dto/PartyCreateDto.java	(date 1731160329436)
+@@ -0,0 +1,20 @@
++package ru.suyundukov.MyProject.dto;
++
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++import ru.suyundukov.MyProject.entity.PartyType;
++
++@AllArgsConstructor
++@NoArgsConstructor
++@Getter
++@Setter
++public class PartyCreateDto {
++    private String afId;
++    private PartyType type;
++    private String userName;
++    private String shortName;
++    private String inn;
++    private String mainPinEq;
++}
+Index: src/main/java/ru/suyundukov/MyProject/entity/FinancingStatus.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/entity/FinancingStatus.java b/src/main/java/ru/suyundukov/MyProject/entity/FinancingStatus.java
+new file mode 100644
+--- /dev/null	(date 1731592863477)
++++ b/src/main/java/ru/suyundukov/MyProject/entity/FinancingStatus.java	(date 1731592863477)
+@@ -0,0 +1,12 @@
++package ru.suyundukov.MyProject.entity;
++
++import lombok.Getter;
++import lombok.RequiredArgsConstructor;
++
++@RequiredArgsConstructor
++@Getter
++public enum FinancingStatus {
++    FUNDED("FUNDED"),
++    UNFUNDED("UNFUNDED");
++    private final String value;
++}
+Index: src/main/java/ru/suyundukov/MyProject/dto/RequirementCreateDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/dto/RequirementCreateDto.java b/src/main/java/ru/suyundukov/MyProject/dto/RequirementCreateDto.java
+new file mode 100644
+--- /dev/null	(date 1731160329421)
++++ b/src/main/java/ru/suyundukov/MyProject/dto/RequirementCreateDto.java	(date 1731160329421)
+@@ -0,0 +1,21 @@
++package ru.suyundukov.MyProject.dto;
++
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++
++import java.time.LocalDate;
++
++@AllArgsConstructor
++@NoArgsConstructor
++@Getter
++@Setter
++public class RequirementCreateDto {
++    private String afId;
++    private String number;
++    private LocalDate date;
++    private String registryAfId;
++    private String registryNumber;
++    private LocalDate registryDate;
++}
+Index: src/main/java/ru/suyundukov/MyProject/entity/CommissionRateStatus.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/entity/CommissionRateStatus.java b/src/main/java/ru/suyundukov/MyProject/entity/CommissionRateStatus.java
+new file mode 100644
+--- /dev/null	(date 1731358692187)
++++ b/src/main/java/ru/suyundukov/MyProject/entity/CommissionRateStatus.java	(date 1731358692187)
+@@ -0,0 +1,22 @@
++package ru.suyundukov.MyProject.entity;
++
++import lombok.*;
++
++/**
++ * Статус ставки комиссии
++ */
++@Getter
++@RequiredArgsConstructor
++public enum CommissionRateStatus {
++    /**
++     * Используется
++     */
++    OPEN("открыто"),
++    /**
++     * Удалена
++     */
++    DELETED("удалено");
++
++    private final String value;
++}
++
+Index: src/main/java/ru/suyundukov/MyProject/dto/SegmentCreateDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/dto/SegmentCreateDto.java b/src/main/java/ru/suyundukov/MyProject/dto/SegmentCreateDto.java
+new file mode 100644
+--- /dev/null	(date 1731160329447)
++++ b/src/main/java/ru/suyundukov/MyProject/dto/SegmentCreateDto.java	(date 1731160329447)
+@@ -0,0 +1,15 @@
++package ru.suyundukov.MyProject.dto;
++
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++
++@AllArgsConstructor
++@NoArgsConstructor
++@Getter
++@Setter
++public class SegmentCreateDto {
++    private String code;
++    private String value;
++}
+Index: src/main/java/ru/suyundukov/MyProject/entity/Requirement.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/entity/Requirement.java b/src/main/java/ru/suyundukov/MyProject/entity/Requirement.java
+new file mode 100644
+--- /dev/null	(date 1730920475610)
++++ b/src/main/java/ru/suyundukov/MyProject/entity/Requirement.java	(date 1730920475610)
+@@ -0,0 +1,50 @@
++package ru.suyundukov.MyProject.entity;
++
++import jakarta.persistence.*;
++import lombok.Getter;
++import lombok.Setter;
++import lombok.experimental.Accessors;
++
++import java.time.LocalDate;
++
++/**
++ * Слепок по поручению
++ */
++@Entity
++@Table(name = "requirement")
++@Getter
++@Setter
++@Accessors(chain = true)
++public class Requirement extends DomainObject {
++    /**
++     * AF id требования
++     */
++    @Column(name = "af_id")
++    private String afId;
++    /**
++     * Номер требования
++     */
++    @Column(name = "number")
++    private String number;
++    /**
++     * Дата требования
++     */
++    @Column(name = "date")
++    private LocalDate date;
++    /**
++     * AF id реестра требований
++     */
++    @Column(name = "registry_af_id")
++    private String registryAfId;
++    /**
++     * Номер реестра требований
++     */
++    @Column(name = "registry_number")
++    private String registryNumber;
++    /**
++     * Дата реестра
++     */
++    @Column(name = "registry_date")
++    private LocalDate registryDate;
++}
++
+Index: src/main/java/ru/suyundukov/MyProject/entity/Agreement.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/entity/Agreement.java b/src/main/java/ru/suyundukov/MyProject/entity/Agreement.java
+new file mode 100644
+--- /dev/null	(date 1730920238860)
++++ b/src/main/java/ru/suyundukov/MyProject/entity/Agreement.java	(date 1730920238860)
+@@ -0,0 +1,44 @@
++package ru.suyundukov.MyProject.entity;
++
++import jakarta.persistence.*;
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++import lombok.experimental.Accessors;
++
++import java.time.LocalDate;
++
++/**
++ * Слепок Договора
++ */
++@Entity
++@Table(name = "com_agreement")
++@Getter
++@Setter
++@Accessors(chain = true)
++@NoArgsConstructor
++@AllArgsConstructor
++public class Agreement extends DomainObject {
++    /**
++     * AF id договора
++     */
++    @Column(name = "af_id", nullable = false)
++    private String afId;
++    /**
++     * Тип договора
++     */
++    @Column(name = "type", nullable = false)
++    @Enumerated(EnumType.STRING)
++    private AgreementType type;
++    /**
++     * Номер договора
++     */
++    @Column(name = "number", nullable = false)
++    private String number;
++    /**
++     * Дата договора
++     */
++    @Column(name = "date")
++    private LocalDate date;
++}
+Index: src/main/java/ru/suyundukov/MyProject/entity/AgreementType.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/entity/AgreementType.java b/src/main/java/ru/suyundukov/MyProject/entity/AgreementType.java
+new file mode 100644
+--- /dev/null	(date 1731592385482)
++++ b/src/main/java/ru/suyundukov/MyProject/entity/AgreementType.java	(date 1731592385482)
+@@ -0,0 +1,16 @@
++package ru.suyundukov.MyProject.entity;
++
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.RequiredArgsConstructor;
++
++/**
++ * Тип договора
++ */
++@RequiredArgsConstructor
++@Getter
++public enum AgreementType {
++    AGENCY("AGENCY"),
++    GENERAL("GENERAL");
++    private final String value;
++}
+Index: src/main/java/ru/suyundukov/MyProject/Repository/CommissionRateRepositoryImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/Repository/CommissionRateRepositoryImpl.java b/src/main/java/ru/suyundukov/MyProject/Repository/CommissionRateRepositoryImpl.java
+new file mode 100644
+--- /dev/null	(date 1731067286604)
++++ b/src/main/java/ru/suyundukov/MyProject/Repository/CommissionRateRepositoryImpl.java	(date 1731067286604)
+@@ -0,0 +1,25 @@
++package ru.suyundukov.MyProject.Repository;
++
++import jakarta.persistence.EntityNotFoundException;
++import lombok.RequiredArgsConstructor;
++import org.springframework.stereotype.Component;
++import ru.suyundukov.MyProject.entity.CommissionRate;
++
++@Component
++@RequiredArgsConstructor
++public class CommissionRateRepositoryImpl implements CommissionRateRepository {
++
++    private final CommissionRateJpaRepository commissionRateJpaRepository;
++
++    @Override
++    public CommissionRate getByAfId(String afId) {
++        return commissionRateJpaRepository.findByAfId(afId)
++                .orElseThrow(() -> new EntityNotFoundException("CommissionRate with afId " + afId + " not found"));
++    }
++
++    @Override
++    public CommissionRate save(CommissionRate commissionRate){
++        return commissionRateJpaRepository.save(commissionRate);
++    }
++
++}
+Index: src/main/java/ru/suyundukov/MyProject/Repository/CommissionRateJpaRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/Repository/CommissionRateJpaRepository.java b/src/main/java/ru/suyundukov/MyProject/Repository/CommissionRateJpaRepository.java
+new file mode 100644
+--- /dev/null	(date 1731245726695)
++++ b/src/main/java/ru/suyundukov/MyProject/Repository/CommissionRateJpaRepository.java	(date 1731245726695)
+@@ -0,0 +1,14 @@
++package ru.suyundukov.MyProject.Repository;
++
++import org.springframework.data.jpa.repository.EntityGraph;
++import org.springframework.data.jpa.repository.JpaRepository;
++import org.springframework.stereotype.Repository;
++import ru.suyundukov.MyProject.entity.CommissionRate;
++
++import java.util.Optional;
++
++@Repository
++public interface CommissionRateJpaRepository extends JpaRepository<CommissionRate, Long> {
++    @EntityGraph(value = "infinite code")
++    Optional<CommissionRate> findByAfId(String afId);
++}
+Index: src/main/java/ru/suyundukov/MyProject/dto/CommissionRateDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/dto/CommissionRateDto.java b/src/main/java/ru/suyundukov/MyProject/dto/CommissionRateDto.java
+new file mode 100644
+--- /dev/null	(date 1731609860260)
++++ b/src/main/java/ru/suyundukov/MyProject/dto/CommissionRateDto.java	(date 1731609860260)
+@@ -0,0 +1,46 @@
++package ru.suyundukov.MyProject.dto;
++
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++import ru.suyundukov.MyProject.entity.*;
++import ru.suyundukov.MyProject.entity.PartyType;
++
++import java.math.BigDecimal;
++import java.time.LocalDate;
++import java.util.Currency;
++import java.util.List;
++
++@AllArgsConstructor
++@NoArgsConstructor
++@Getter
++@Setter
++public class CommissionRateDto {
++    private String afId;
++    private EnumDictionaryDto<CommissionType> commissionType;
++    private EnumDictionaryDto<AgreementType> agreementType;
++    private EnumDictionaryDto<AnnualRateType> annualType;
++    private EnumDictionaryDto<PartyType> partyType;
++    private EnumDictionaryDto<RateType> rateType;
++    private EnumDictionaryDto<IndicatorType> indicatorType;
++    private Boolean isSurcharge;
++    private Integer fundingPeriodFrom;
++    private Integer fundingPeriodTo;
++    private BigDecimal rateValue;
++    private BigDecimal fixSumValue;
++    private Currency currency;
++    private EnumDictionaryDto<FinancingStatus> financingStatus;
++    private String note;
++    private String lmId;
++    private EnumDictionaryDto<CommissionRateStatus> status;
++    private RequirementDto requirement;
++    private AgreementDto agreement;
++    private PartyDto party;
++    private ContractDto contract;
++    private SegmentDto segment;
++    private String createUserFullName;
++    private String createUserLogin;
++    private LocalDate startDate;
++    private List<PartyDto> debtorsCreditors;
++}
+Index: src/main/java/ru/suyundukov/MyProject/dto/CommissionRateUpdateDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/dto/CommissionRateUpdateDto.java b/src/main/java/ru/suyundukov/MyProject/dto/CommissionRateUpdateDto.java
+new file mode 100644
+--- /dev/null	(date 1731591779751)
++++ b/src/main/java/ru/suyundukov/MyProject/dto/CommissionRateUpdateDto.java	(date 1731591779751)
+@@ -0,0 +1,36 @@
++package ru.suyundukov.MyProject.dto;
++
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++import ru.suyundukov.MyProject.entity.*;
++
++import java.math.BigDecimal;
++import java.util.Currency;
++
++@AllArgsConstructor
++@NoArgsConstructor
++@Getter
++@Setter
++public class CommissionRateUpdateDto {
++    private String afId;
++    private CommissionType commissionType;
++    private RateType rateType;
++    private IndicatorType indicatorType;
++    private Boolean isSurcharge;
++    private Integer fundingPeriodFrom;
++    private Integer fundingPeriodTo;
++    private BigDecimal rateValue;
++    private BigDecimal fixSumValue;
++    private Currency currency;
++    private FinancingStatus financingStatus;
++    private String note;
++    private String lmId;
++    private CommissionRateStatus status;
++    private Requirement requirement;
++    private Agreement agreement;
++    private Party party;
++    private Contract contract;
++    private Segment segment;
++}
+Index: src/main/java/ru/suyundukov/MyProject/dto/CommissionRateCreateDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/dto/CommissionRateCreateDto.java b/src/main/java/ru/suyundukov/MyProject/dto/CommissionRateCreateDto.java
+new file mode 100644
+--- /dev/null	(date 1731591757579)
++++ b/src/main/java/ru/suyundukov/MyProject/dto/CommissionRateCreateDto.java	(date 1731591757579)
+@@ -0,0 +1,42 @@
++package ru.suyundukov.MyProject.dto;
++
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++import ru.suyundukov.MyProject.entity.*;
++
++import java.math.BigDecimal;
++import java.time.LocalDate;
++import java.util.Currency;
++import java.util.List;
++
++@AllArgsConstructor
++@NoArgsConstructor
++@Getter
++@Setter
++public class CommissionRateCreateDto {
++    private String afId;
++    private CommissionType commissionType;
++    private RateType rateType;
++    private IndicatorType indicatorType;
++    private Boolean isSurcharge;
++    private Integer fundingPeriodFrom;
++    private Integer fundingPeriodTo;
++    private BigDecimal rateValue;
++    private BigDecimal fixSumValue;
++    private Currency currency;
++    private FinancingStatus financingStatus;
++    private String note;
++    private String lmId;
++    private CommissionRateStatus status;
++    private RequirementDto requirement;
++    private AgreementDto agreement;
++    private PartyDto party;
++    private ContractDto contract;
++    private SegmentDto segment;
++    private String createUserFullName;
++    private String createUserLogin;
++    private LocalDate startDate;
++    private List<PartyDto> debtorsCreditors;
++}
+Index: src/main/java/ru/suyundukov/MyProject/mapper/CommissionRateMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ru/suyundukov/MyProject/mapper/CommissionRateMapper.java b/src/main/java/ru/suyundukov/MyProject/mapper/CommissionRateMapper.java
+new file mode 100644
+--- /dev/null	(date 1731609860243)
++++ b/src/main/java/ru/suyundukov/MyProject/mapper/CommissionRateMapper.java	(date 1731609860243)
+@@ -0,0 +1,49 @@
++package ru.suyundukov.MyProject.mapper;
++
++import org.mapstruct.Mapper;
++import org.mapstruct.Mapping;
++import ru.suyundukov.MyProject.dto.*;
++import ru.suyundukov.MyProject.entity.*;
++import ru.suyundukov.MyProject.entity.PartyType;
++
++@Mapper(componentModel = "spring")
++public interface CommissionRateMapper {
++    CommissionRateDto mapToDto(CommissionRate commissionRate);
++    @Mapping(target = "creationInfo.createUserFullName", source = "createUserFullName")
++    @Mapping(target = "creationInfo.createUserLogin", source = "createUserLogin")
++    CommissionRate mapToDomain(CommissionRateCreateDto commissionRateCreateDto);
++
++    RequirementDto requirementToRequirementDto(Requirement requirement);
++    Requirement requirementDtoToRequirement(RequirementDto requirementDto);
++
++    AgreementDto agreementToAgreementDto(Agreement agreement);
++    Agreement agreementDtoToAgreement(AgreementDto agreementDto);
++
++    PartyDto partyToPartyDto(Party party);
++    Party partyDtoToParty(PartyDto partyDto);
++
++    ContractDto contractToContractDto(Contract contract);
++    Contract contractDtoToContract(ContractDto contractDto);
++
++    SegmentDto segmentToSegmentDto(Segment segment);
++    Segment segmentDtoToSegment(SegmentDto segmentDto);
++
++
++    @Mapping(target = "code", source = ".")
++    EnumDictionaryDto<CommissionRateStatus> mapToDto (CommissionRateStatus commissionRateStatus);
++    @Mapping(target = "code", source = ".")
++    EnumDictionaryDto<IndicatorType> mapToDto(IndicatorType indicatorType);
++    @Mapping(target = "code", source = ".")
++    EnumDictionaryDto<AgreementType> mapToDto(AgreementType agreementType);
++    @Mapping(target = "code", source = ".")
++    EnumDictionaryDto<AnnualRateType> mapToDto(AnnualRateType annualRateType);
++    @Mapping(target = "code", source = ".")
++    EnumDictionaryDto<FinancingStatus> mapToDto (FinancingStatus financingStatus);
++    @Mapping(target = "code", source = ".")
++    EnumDictionaryDto<PartyType> mapToDto (PartyType partyType);
++    @Mapping(target = "code", source = ".")
++    EnumDictionaryDto<RateType> mapToDto (RateType rateType);
++    @Mapping(target = "code", source = ".")
++    EnumDictionaryDto<CommissionType> mapToDto (CommissionType commissionType);
++
++}

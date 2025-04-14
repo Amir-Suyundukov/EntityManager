@@ -8,14 +8,21 @@ import ru.suyundukov.MyProject.api.PersonInbound;
 import ru.suyundukov.MyProject.entity.Person;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 @RequiredArgsConstructor
 public class PersonService implements PersonInbound {
 
+    private final AtomicInteger integer = new AtomicInteger(0);
+
     private final PersonRepository personRepository;
 
     public Person createPerson(Person person) {
+        String uniqueId = "IP-" + integer.incrementAndGet();
+        person.setUniqueId(uniqueId);
+        person.setType("IP");
+
         return personRepository.save(person);
     }
 

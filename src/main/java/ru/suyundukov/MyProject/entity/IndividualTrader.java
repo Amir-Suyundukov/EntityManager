@@ -1,11 +1,20 @@
 package ru.suyundukov.MyProject.entity;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Entity
+@Table(name = "individualtrader")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class IndividualTrader extends BusinessUnit {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "type")
+    private String type = "IT";//индивидуал
+    @Column(name = "unique_id")
+    private String uniqueId;
 }

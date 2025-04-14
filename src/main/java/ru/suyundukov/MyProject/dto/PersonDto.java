@@ -11,6 +11,8 @@ import lombok.Setter;
 @Setter
 public class PersonDto {
     private Long id;
+    private String uniqueId;
+    private String type;
     private String name;
     private String surName;
     private String patronymic;

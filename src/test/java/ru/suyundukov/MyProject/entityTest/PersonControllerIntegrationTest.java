@@ -24,7 +24,9 @@ import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @SpringBootTest
@@ -50,6 +52,27 @@ public class PersonControllerIntegrationTest {
         assertEquals("Amir", personDto.getName());
     }
 
+    @Test
+    void createPerson_successfully() throws Exception {
+        PersonDto personDto = new PersonDto();
+        personDto.setName("Amir");
+
+        MvcResult mvcResult = mockMvc.perform(post("/person")
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsBytes(personDto)))
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andReturn();
+
+        PersonDto createdPersonDto = getFromResponse(mvcResult, PersonDto.class);
+        assertNotNull(createdPersonDto.getId(), "ID созданного объекта не должен быть null");
+        assertEquals("Amir", createdPersonDto.getName());
+        Person savedPerson = personRepository.findById(createdPersonDto.getId()).orElseThrow();
+        assertEquals("Amir", savedPerson.getName());
+    }
+
+    //написать тест на обновление для всех put запросов
+
 
     // ===================================================================================================================
     // = Implementation
@@ -58,7 +81,6 @@ public class PersonControllerIntegrationTest {
 
     private void createPerson() {
         Person person = new Person();
-        person.setId(1L);
         person.setName("Amir");
         personRepository.save(person);
     }
@@ -71,6 +93,7 @@ public class PersonControllerIntegrationTest {
         }
     }
 
+    // одинаковые методы вынести в абстрактный класс
     private <T> T getFromResponse(MvcResult result, Class<?> clazz, Class<?>... classes) {
         return mapToObject(getStringFromResponse(result), clazz, classes);
     }

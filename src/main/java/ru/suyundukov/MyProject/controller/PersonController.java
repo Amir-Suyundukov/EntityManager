@@ -1,7 +1,8 @@
 package ru.suyundukov.MyProject.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/person")
 @RequiredArgsConstructor
-//tag
+@Tag(name = "Контроллер физического лица(IP)")
 public class PersonController {
 
     private final PersonInbound personInbound;
@@ -25,6 +26,7 @@ public class PersonController {
     private final PersonMapper personMapper;
 
     @PostMapping
+    @Operation(description = "Создание физ лица")
     @ResponseStatus(HttpStatus.CREATED)
     public PersonDto createPerson(@RequestBody CreatePersonDto createPersonDto) {
         Person person = personMapper.mapToDomain(createPersonDto);
@@ -33,6 +35,7 @@ public class PersonController {
     }
 
     @PutMapping("/{id}")
+    @Operation(description = "Обновление физ лица")
     @ResponseStatus(HttpStatus.OK)
     public PersonDto updatePerson(@PathVariable Long id, @RequestBody UpdatePersonDto updatePersonDto) {
         Person person = personMapper.mapToDomain(updatePersonDto);
@@ -41,6 +44,7 @@ public class PersonController {
     }
 
     @GetMapping("/{id}")
+    @Operation(description = "Поиск физ лица по id")
     @ResponseStatus(HttpStatus.OK)
     public PersonDto getPersonById(@PathVariable Long id) {
         Person person = personInbound.getPersonById(id);
@@ -48,6 +52,7 @@ public class PersonController {
     }
 
     @GetMapping
+    @Operation(description = "Список физ лиц")
     @ResponseStatus(HttpStatus.OK)
     public List<PersonDto> getAllPerson() {
         List<Person> personList = personInbound.getAllPerson();
@@ -55,11 +60,10 @@ public class PersonController {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(description = "Удаление физ лица по id")
     @ResponseStatus(HttpStatus.OK)
-    private ResponseEntity<Void> deletePerson(@PathVariable Long id) {
+    public ResponseEntity<Void> deletePerson(@PathVariable Long id) {
         personInbound.deletePerson(id);
         return ResponseEntity.ok().build();
     }
-
-
 }
